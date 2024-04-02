@@ -8,7 +8,7 @@ let colVer = getComputedStyle(document.documentElement).getPropertyValue(
 );
 
 function mensaje_debajo_input(mensaje, color) {
-	if (color === "ver")
+	if (color === "verde")
 		document.getElementById("mns-input-cat").style.color = `${colVer}`;
 	else document.getElementById("mns-input-cat").style.color = `${colRoj}`;
 	document.getElementById("mns-input-cat").innerHTML = `${mensaje}`;
@@ -25,7 +25,7 @@ let idCat_paraEditar;
 /* ============================================ */
 /* -- Limpia el Input cuando cancela Crear o Editar -- */
 categ_cancelar.addEventListener("click", () => {
-	mensaje_debajo_input("Ingrese el nombre de la Categoría.", "ver");
+	mensaje_debajo_input("Ingrese el nombre de la Categoría.", "verde");
 
 	categ_agregar.style.display = `flex`;
 	categ_editar.style.display = `none`;
@@ -146,7 +146,7 @@ function editarCategoria(idCat) {
 function mostrarCatParaEditar(categoria) {
 	categ_agregar.style.display = `none`;
 	categ_editar.style.display = `flex`;
-	mensaje_debajo_input("EDITE el nombre de la Categoría.", "roj");
+	mensaje_debajo_input("EDITE el nombre de la Categoría.", "rojo");
 	categ_nombre.value = categoria.nombre;
 }
 
@@ -159,7 +159,7 @@ categ_editar.addEventListener("click", () => {
 	categ_agregar.style.display = `flex`;
 	categ_editar.style.display = `none`;
 	categ_nombre.value = "";
-	mensaje_debajo_input("Ingrese el nombre de la Categoría.", "ver");
+	mensaje_debajo_input("Ingrese el nombre de la Categoría.", "verde");
 });
 
 //4- Guarda la categoría editada
