@@ -74,7 +74,7 @@ menuBalance.addEventListener("click", () => {
 menuCategorias.addEventListener("click", () => {
 	cerrarNav();
 	mostrar(contenedor_menuCategorias);
-	//
+	funcionesCategorias(); // ver categorias.js
 });
 
 menuReportes.addEventListener("click", () => {

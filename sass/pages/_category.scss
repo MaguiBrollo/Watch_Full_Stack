@@ -1,0 +1,167 @@
+/*==========================================================*/
+/*--------------- << Menú Categorías  >> -------------------*/
+.categoria {
+	@include flex-dir-al-jus(x, column, center, center);
+	@include caja(var(--colTer), 90%, auto);
+	max-width: var(--maxAncho);
+
+	&__cont {
+		font-size: 0.8rem;
+		@include flex-dir-al-jus(flex, column, center, center);
+	}
+	&__tit-img {
+		width: 100%;
+		@include flex-dir-al-jus(flex, row, center, x);
+	}
+	&__tit {
+		@extend .lora-i-n; //fonts.scss
+		font-size: 1.8rem;
+		width: 85%;
+		padding-left: 10px;
+	}
+	&__img {
+		width: 10%;
+		margin-bottom: 5px;
+	}
+
+	//--------
+	&__crud {
+		@include flex-dir-al-jus(flex, column, x, x);
+		width: 100%;
+	}
+	&__form {
+		width: 100%;
+
+		@include flex-dir-al-jus(flex, row, x, space-between);
+		padding: 5px;
+		border: 5px double var(--colSec);
+	}
+	&__form-input {
+		@include flex-dir-al-jus(flex, row, x, x);
+		gap: 10px;
+	}
+	&__input-nom-cat {
+		background-color: var(--colFondoMain);
+		border: 1px solid transparent;
+		border-radius: 4px;
+		font-size: 0.9rem;
+		height: 35px;
+		padding-left: 6px;
+	}
+
+	&__btn-aeb {
+		@include flex-dir-al-jus(flex, row, x, x);
+	}
+	&__btn {
+		@include boton(var(--colFondoMain), 40px, false);
+		cursor: pointer;
+
+		&--agr {
+			color: var(--colVerde);
+			display: flex;
+		}
+		&--edi {
+			color: var(--colVerde);
+			display: none;
+		}
+		&--bor {
+			color: var(--colRojo);
+		}
+
+		&--agr:hover,
+		&--edi:hover,
+		&--bor:hover {
+			filter: drop-shadow(10px 10px 10px var(--colTer)) invert(10%);
+		}
+	}
+
+	&__mns-input {
+		@include flex-dir-al-jus(flex, row, x, flex-start);
+		width: 100%;
+		margin-bottom: 15px;
+		padding-left: 15px;
+		color: var(--colVerde);
+		font-size: 0.8rem;
+	}
+	&__lista {
+		width: 100%;
+		border: 5px double var(--colSec);
+		margin-top: 10px;
+		//margin-bottom: 30px;
+	}
+	&__lista-titulo {
+		backdrop-filter: sepia(20%);
+		width: 100%;
+		height: 27px;
+		border-bottom: 1px solid var(--colSec);
+		@include flex-dir-al-jus(flex, row, center, x);
+	}
+	&__nombre {
+		@include flex-dir-al-jus(flex, x, x, center);
+		width: 70%;
+	}
+
+	&__acciones {
+		@include flex-dir-al-jus(flex, x, x, center);
+		width: 30%;
+	}
+
+	&__listado {
+		@include flex-dir-al-jus(flex, column, x, flex-start);
+		max-height: 40vh;
+		min-height: 40vh;
+		overflow-y: auto;
+		width: 100%;
+	}
+	&__listado-fila {
+		@include flex-dir-al-jus(flex, row, x, x);
+		width: 100%;
+		height: 27px;
+	}
+	&__listado-fila:hover {
+		backdrop-filter: sepia(20%);
+	}
+
+	&__listado-nombres {
+		@include flex-dir-al-jus(flex, x, x, center);
+		padding-left: 15px;
+		width: 70%;
+	}
+	&__listado-iconos {
+		@include flex-dir-al-jus(flex, row, x, center);
+		width: 30%;
+		gap: 20px;
+
+		&--edi {
+			color: var(--colVerde);
+			cursor: pointer;
+		}
+		&--bor {
+			color: var(--colRojo);
+			cursor: pointer;
+		}
+		&--edi:hover,
+		&--bor:hover {
+			filter: drop-shadow(16px 16px 20px var(--colSec)) invert(75%);
+		}
+	}
+
+	//--------------------------------------------
+	//$md: "768px" ver en varibales.scss;
+	@media (min-width: #{$md}px) {
+		@include caja(var(--colTer), 70%, auto);
+
+		&__cont {
+			font-size: 1rem;
+		}
+
+		&__crud {
+			width: 80%;
+		}
+
+		&__listado {
+			max-height: 48vh;
+			min-height: 48vh;
+		}
+	}
+}

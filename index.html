@@ -121,34 +121,78 @@
 					<!-- contenedor BALANCE -->
 					<div class="balance__cont-balance">
 						<h2 class="balance__h2">Balance</h2>
-
-						
 					</div>
 
 					<!-- contenedor TITULO-FILTRO -->
-					<div class="balance__cont-filtros-ppal">
-						
-						
-					</div>
+					<div class="balance__cont-filtros-ppal"></div>
 				</div>
-
-				
 			</section>
 
 			<!-- contenedor NUEVAS OPERACIONES -->
-			<section>
-				
-			</section>
+			<section></section>
 			<!-- ==========================================  -->
 			<!-- ============= MENÚ CATEGORÍAS ============  -->
-			<section class="section-categ ocultar" id="cont-categorias">
-				<div>
-					<div class="categ-tit-img">
-						<h2>Categorías</h2>
-						
+			<section class="categoria ocultar" id="cont-categorias">
+				<div class="categoria__cont">
+					<div class="categoria__tit-img">
+						<h2 class="categoria__tit">Categorías</h2>
+						<img
+							class="categoria__img img-js"
+							src="img/categorias.svg"
+							alt="Imagen de Categorías"
+							aria-label="Imagen de Categorías"
+						/>
 					</div>
 
-					
+					<div class="categoria__crud">
+						<div class="categoria__form">
+							<!-- <div class="div-form"> -->
+								<div class="categoria__form-input">
+									<input
+										type="text"
+										class="categoria__input-nom-cat"
+										id="categ-nombre"
+										placeholder="Nombre"
+										maxlength="20"
+										name="categ-nombre"
+									/>
+								</div>
+
+								<div class="categoria__btn-aeb">
+									<button class="categoria__btn categoria__btn--agr" id="categ-agregar">
+										<span class="material-symbols-outlined"> add_circle </span>
+									</button>
+
+									<button class="categoria__btn categoria__btn--edi" id="categ-editar">
+										<span class="material-symbols-outlined">
+											check_circle
+										</span>
+									</button>
+									<button class="categoria__btn categoria__btn--bor" id="categ-cancelar">
+										<span class="material-symbols-outlined"> cancel</span>
+									</button>
+								</div>
+							<!-- </div> -->
+						</div>
+						<div class="categoria__mns-input" id="mns-input-cat">
+							<p>Ingrese el nombre de la categoría.</p>
+						</div>
+						<div class="categoria__lista">
+							<div class="categoria__lista-titulo">
+								<p class="categoria__nombre">CATEGORÍA NOMBRE</p>
+								<p class="categoria__acciones">ACCIONES</p>
+							</div>
+
+							<div class="categoria__listado" id="categ-tabla-listado">
+								<!-- Se completa con los datos de la DBF. Ver categorias.js-->
+								<!-- <div class="categoria__listado-fila">
+										div nombre 
+										div iconos
+									</div>
+									 -->
+							</div>
+						</div>
+					</div>
 				</div>
 			</section>
 
@@ -157,7 +201,6 @@
 			<section class="reportes ocultar" id="cont-menu-reportes">
 				<div>
 					<p>Reportes</p>
-					
 				</div>
 			</section>
 		</main>
@@ -202,4 +245,5 @@
 
 	<!-- JavaScript -->
 	<script src="js/main.js"></script>
+	<script src="js/category.js"></script>
 </html>
