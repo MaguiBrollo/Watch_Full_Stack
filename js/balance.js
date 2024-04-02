@@ -267,11 +267,11 @@ function formatFecha(f) {
 	let fc = new Date(f);
 	let ff;
 	fc.getDate() < 10
-		? (ff = "0" + fc.getDate() + "/")
-		: (ff = fc.getDate() + "/");
+		? (ff = "0" + fc.getDate() + "-")
+		: (ff = fc.getDate() + "-");
 	fc.getMonth() + 1 < 10
-		? (ff += "0" + (fc.getMonth() + 1) + "/")
-		: (ff += fc.getMonth() + 1 + "/");
+		? (ff += "0" + (fc.getMonth() + 1) + "-")
+		: (ff += fc.getMonth() + 1 + "-");
 	ff += fc.getFullYear();
 	return ff;
 }
