@@ -1,0 +1,52 @@
+/*====================================================================*/
+/*-------------------------  << FOOTER  >> ---------------------------*/
+.color-fuente {
+	color: var(--colFuente);
+	font-size: 1.1rem;
+}
+
+.footer {
+	width: 100%;
+	height: 80px;
+	background-color: var(--colSec);
+	text-align: center;
+
+	&__nav {
+		@include flex-dir-al-jus(flex, row, center, center);
+	}
+
+	&__link-red-social {
+		width: 60px;
+		margin: 10px 0px;
+		text-decoration: none;
+
+		@include flex-dir-al-jus(flex, row, center, center);
+		@extend .color-fuente;
+	}
+	&__icono-red-social {
+		color: var(--colFuente);
+		background-color: var(--colSec);
+
+		width: 1.8rem;
+		height: 1.8rem;
+		font-size: 1.2rem;
+		border: 1px solid var(--colFuente);
+		border-radius: 50%;
+
+		@include flex-dir-al-jus(flex, row, center, center);
+	}
+	&__icono-red-social:hover {
+		color: var(--colSec);
+		background-color: var(--colFuente);
+	}
+
+	&__h3 {
+		@extend .color-fuente;
+		@extend .lora-i-n; //fonts.scss
+	}
+	&__span {
+		color: var(--colRojo);
+		font-size: 1rem;
+		font-weight: bold;
+	}
+}

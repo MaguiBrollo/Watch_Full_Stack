@@ -1,0 +1,40 @@
+/*====================================================================*/
+/*-------------------------- << MIXINS  >> ---------------------------*/
+@mixin boton($color, $ancho, $sombra) {
+	margin: 0px 5px;
+	padding: 5px;
+	border-radius: 5px;
+	background-color: $color;
+	width: $ancho;
+	display: flex;
+	justify-content: center;
+	border: none;
+	@if ($sombra) {
+		box-shadow: 5px 5px 5px -3px rgb(140, 136, 136);
+	}
+}
+
+@mixin flex-dir-al-jus($tipo, $dir, $posA, $posJ) {
+	@if $tipo != "x" {
+		display: #{$tipo};
+	}
+	@if $dir != "x" {
+		flex-direction: #{$dir};
+	}
+	@if $posA != "x" {
+		align-items: #{$posA};
+	}
+	@if $posJ != "x" {
+		justify-content: #{$posJ};
+	}
+}
+
+@mixin caja($color, $ancho, $alto) {
+	margin: 15px auto;
+	padding: 15px;
+	border-radius: 5px;
+	background-color: $color;
+	box-shadow: 8px 8px 5px -8px rgb(164, 163, 163);
+	width: $ancho;
+	height: $alto;
+}

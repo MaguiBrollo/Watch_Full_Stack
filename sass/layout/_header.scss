@@ -1,0 +1,134 @@
+/*====================================================================*/
+/*-------------------------  << HEADER  >> ---------------------------*/
+.header-ocultar {
+	display: none;
+}
+.header-mostrar {
+	display: flex;
+}
+//-------------------------
+.header {
+	width: 100%;
+	height: auto;
+	background-color: var(--colSec);
+	@include flex-dir-al-jus(flex, column, x, x);
+
+	&__cont-titulo {
+		color: var(--colFuente);
+		width: 100%;
+		@include flex-dir-al-jus(flex, row, x, x);
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+	&__logo-ada {
+		width: 50%;
+		height: 80px;
+		@include flex-dir-al-jus(flex, row, center, x);
+
+		&--nombre {
+			margin-left: 10px;
+			font-size: 2rem;
+			@extend .lora-i-n; //fonts.scss
+			color: var(--colTituloPpal);
+		}
+	}
+
+	&__cont-modo-hamb {
+		width: 50%;
+		@include flex-dir-al-jus(flex, row, center, flex-end);
+	}
+	&__modo {
+		@include boton(var(--colSec), 35px, false);
+		font-size: 1.2rem;
+		cursor: pointer;
+	}
+
+	&__cont-hamb {
+		@include flex-dir-al-jus(flex, row, center, flex-end);
+	}
+
+	&__hamb {
+		@include boton(var(--colSec), 35px, false);
+		cursor: pointer;
+		&.header-ocultar {
+			display: none;
+		}
+	}
+
+	&__modo:hover,
+	&__menu-hamb:hover {
+		background-color: var(--colHoverBtn);
+	}
+
+	&__nav {
+		width: 100%;
+		@include flex-dir-al-jus(x, x, x, flex-start);
+		background-color: var(--colTer);
+	}
+	&__cont-nav {
+		width: 100%;
+		@include flex-dir-al-jus(flex, column, flex-start, x);
+		@extend .lora-i-n; //fonts.scss
+	}
+	&__nav-a {
+		@include flex-dir-al-jus(flex, row, center, x);
+		text-decoration: none;
+		color: var(--colFuente);
+		font-size: 1rem;
+		margin-left: 10px;
+		padding: 5px;
+		cursor: pointer;
+	}
+	&__nav-a-span {
+		padding-right: 5px;
+		font-size: 1rem;
+	}
+
+	&__nav-a:hover {
+		font-weight: bold;
+	}
+	&__nav-a:hover &__nav-a-span {
+		font-weight: bold;
+	}
+}
+
+//$md: "768px" ver en varibales.scss;
+@media (min-width: #{$md}px) {
+	.header {
+		@include flex-dir-al-jus(flex, row, x, flex-end);
+
+		&__cont-titulo {
+			margin-right: 0px;
+		}
+
+		&__logo-ada {
+			&--nombre {
+				font-size: 2.4rem;
+			}
+		}
+
+		&__cont-modo-hamb {
+			width: 100%;
+		}
+
+		&__cont-hamb {
+			display: none;
+			padding-right: 0px;
+		}
+
+		&__nav {
+			width: auto;
+			background-color: var(--colSec);
+			@include flex-dir-al-jus(flex, row, x, flex-end);
+			padding-right: 10px;
+		}
+		&__cont-nav {
+			@include flex-dir-al-jus(flex, row, center, flex-end);
+		}
+		&__span-modo,
+		&__nav-a,
+		&__nav-a-span {
+			font-size: 1.2rem;
+		}
+	}
+}
