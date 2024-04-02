@@ -1,4 +1,10 @@
-//
+// Se usa en balance ---------
+function formatPesos(num) {
+	return num.toLocaleString("es-ES", {
+		minimumFractionDigits: 2,
+		maximumFractionDigits: 2,
+	});
+}
 //--------------------------------------
 
 /* Por motivos de que SASS no trabaja correctamente en poner y sacar
@@ -68,7 +74,7 @@ menuInicio.addEventListener("click", () => {
 menuBalance.addEventListener("click", () => {
 	cerrarNav();
 	mostrar(contenedor_menuBalance);
-	//
+	funcionesBalance(); // ver balance.js
 });
 
 menuCategorias.addEventListener("click", () => {
