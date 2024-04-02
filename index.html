@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en" data-theme-color="light">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Watch Full Stack</title>
+		<link rel="icon" href="img/ahorrosM_ico.ico" type="image/png" />
+
+		<!-- Iconos de google para todo, menos para el FOOTER -->
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+		/>
+
+		<!-- STYLE para los iconos del FOOTTER -->
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+			integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
+
+		<!-- MIS ESTILOS, DEBEN IR ÚLTIMO -->
+		<link rel="stylesheet" href="css/main.css" />
+	</head>
+
+	<body>
+		<!-- ===============================  -->
+		<!-- =========== HEADER ============  -->
+		<header class="header">
+			<div class="header__cont-titulo">
+				<div class="header__logo-ada">
+					<img
+						src="img/ahorrosM_ico.png"
+						alt="Logo Watch"
+						aria-label="Logo de la aplocación"
+					/>
+					<h1 class="header__logo-ada--nombre">Watch+</h1>
+				</div>
+
+				<div class="header__cont-modo-hamb">
+					<button class="header__modo" tabindex="0" id="btn-claro-oscuro">
+						<!-- OJO si se cambia el nombre de la clase, VER 4 veces en main.js -->
+						<span class="header__span-modo material-symbols-outlined"
+							>dark_mode</span
+						>
+					</button>
+
+					<!-- Menú hamb -->
+					<div class="header__cont-hamb">
+						<button class="header__hamb" id="abrir">
+							<span class="material-symbols-outlined">menu</span>
+						</button>
+
+						<button class="header__hamb header-ocultar" id="cerrar">
+							<span class="material-symbols-outlined"> close </span>
+						</button>
+					</div>
+				</div>
+			</div>
+
+			<nav class="header__nav header-ocultar" id="nav-header">
+				<div class="header__cont-nav">
+					<a class="header__nav-a" tabindex="0" href="#" id="menu-inicio">
+						<span class="header__nav-a-span material-symbols-outlined">
+							home
+						</span>
+						Inicio
+					</a>
+					<a class="header__nav-a" tabindex="0" href="#" id="menu-balance">
+						<span class="header__nav-a-span material-symbols-outlined">
+							add_chart
+						</span>
+						Balance
+					</a>
+
+					<a class="header__nav-a" tabindex="0" href="#" id="menu-categorias">
+						<span class="header__nav-a-span material-symbols-outlined">
+							list_alt_add
+						</span>
+						Categorías
+					</a>
+
+					<a class="header__nav-a" tabindex="0" href="#" id="menu-reportes">
+						<span class="header__nav-a-span material-symbols-outlined">
+							insert_chart
+						</span>
+						Reportes
+					</a>
+				</div>
+			</nav>
+		</header>
+
+		<!-- ===============================  -->
+		<!-- ============= MAIN ============  -->
+		<main class="main">
+			<!-- ==========================================  -->
+			<!-- ============= MENÚ INICIO ================  -->
+			<section class="inicio" id="cont-menu-inicio">
+				<div class="inicio__cont-img-p">
+					<img
+						class="inicio__img img-js"
+						src="img/ahorros.png"
+						alt="Imagen de portada"
+						aria-label="Imagen de portada, mujer ahorrando"
+					/>
+
+					<p class="tamanio-frase">Bienvenidos al Sistema de</p>
+					<p class="tamanio-frase">Control de Gastos e Ingresos</p>
+					<p class="tamanio-frase">Watch+</p>
+				</div>
+			</section>
+
+			<!-- ==========================================  -->
+			<!-- ============= MENÚ BALANCE ===============  -->
+			<!-- contiene a contenedor BALANCE-FILTROS y contenedor OPERACIONES -->
+			<section class="balance ocultar" id="cont-menu-balance">
+				<!-- contenedor BALANCE-FILTROS -->
+				<div class="balance__cont-bal-fil">
+					<!-- contenedor BALANCE -->
+					<div class="balance__cont-balance">
+						<h2 class="balance__h2">Balance</h2>
+
+						
+					</div>
+
+					<!-- contenedor TITULO-FILTRO -->
+					<div class="balance__cont-filtros-ppal">
+						<div class="balance__filtros-titulo">
+							<h2 class="balance__h2">Filtros</h2>
+							<a class="balance__ocultar-filtros" id="ocultar-filtros"
+								><i class="fa-regular fa-eye"></i>
+								Mostrar Filtros
+							</a>
+						</div>
+						<!-- contenedor FILTROS (se oculta) -->
+						
+					</div>
+				</div>
+
+				<!-- contenedor SIN/CON OPERACIONES -->
+				<div class="balance__cont-sin-con-oper">
+					<div class="balance__titulo">
+						<h2 class="balance__h2">Operaciones</h2>
+						
+					</div>
+					<div class="balance__btn-nueva-oper-cont">
+						<button class="balance__btn-nueva-oper" id="btn-nueva-oper">
+							<span class="material-symbols-outlined balance__btn-mas"
+								>add_circle</span
+							>
+							Nueva Operación
+						</button>
+					</div>
+					<!-- contenedor SIN OPERACIONES -->
+					<div class="balance__cont-sin-oper" id="cont-sin-oper">
+						
+
+						<p class="balance__p-sin-oper">
+							No se puede generar el listado de operaciones.<br />
+							Diríjase a "Nueva Operación" y registre nuevas operaciones. O
+							seleccione los "Filtros" deseadas.
+						</p>
+					</div>
+
+					<!-- contenedor CON OPERACIONES -->
+					
+				</div>
+			</section>
+
+			<!-- contenedor NUEVAS OPERACIONES -->
+			<section>
+				
+			</section>
+			<!-- ==========================================  -->
+			<!-- ============= MENÚ CATEGORÍAS ============  -->
+			<section class="section-categ ocultar" id="cont-categorias">
+				<div>
+					<div class="categ-tit-img">
+						<h2>Categorías</h2>
+						
+					</div>
+
+					
+				</div>
+			</section>
+
+			<!-- ==========================================  -->
+			<!-- ============= MENÚ REPORTES ==============  -->
+			<section class="reportes ocultar" id="cont-menu-reportes">
+				<div>
+					<p>Reportes</p>
+					
+				</div>
+			</section>
+		</main>
+		<!-- ==========================================  -->
+		<!-- ================== FOOTER ================  -->
+
+		<footer class="footer">
+			<nav class="footer__nav">
+				<a
+					class="footer__link-red-social"
+					tabindex="0"
+					href="https://github.com/MaguiBrollo"
+					target="_blank"
+				>
+					<i class="footer__icono-red-social fa-brands fa-github-alt"></i>
+				</a>
+
+				<a
+					class="footer__link-red-social"
+					tabindex="0"
+					href="https://www.linkedin.com/in/magui-brollo/"
+					target="_blank"
+				>
+					<i class="footer__icono-red-social fa-brands fa-linkedin-in"></i>
+				</a>
+
+				<a
+					class="footer__link-red-social"
+					tabindex="0"
+					href="mailto:maguieb@gmail.com?Subject=Interesado%20en%20tus%20servicios%20como%20desarrolladora%20Frontend."
+				>
+					<i class="footer__icono-red-social fa-solid fa-envelope"></i>
+				</a>
+			</nav>
+			<h3 class="footer__h3">
+				Hecho con el
+				<span class="footer__span material-symbols-outlined"> favorite </span>
+				. Magui
+			</h3>
+		</footer>
+	</body>
+
+	<!-- JavaScript -->
+	<script src="js/main.js"></script>
+</html>
