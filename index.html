@@ -285,7 +285,83 @@
 			</section>
 
 			<!-- contenedor NUEVAS OPERACIONES -->
-			<section></section>
+			<section>
+				<div class="nueva-oper ocultar" id="cont-nueva-oper">
+					<div class="nueva-oper__titulo" id="tit-nueva-op">
+						<h2 class="balance__h2">Nueva Operación</h2>
+						<img
+							class="nueva-oper__img img-js"
+							src="img/operaciones.svg"
+							alt="Imagen de Operaciones"
+							aria-label="Imagen de Operaciones"
+						/>
+					</div>
+
+					<div class="nueva-oper__borde">
+						<div class="nueva-oper__campo">
+							<label class="" for="descripcion-oper-input"
+								>Descripción
+								<span class="nueva-oper__span">(hasta 40 caracteres)</span>
+							</label>
+							<input
+								type="text"
+								class="nueva-oper__campo--cu"
+								id="descripcion-oper-input"
+								placeholder="Ej.: cuota"
+							/>
+						</div>
+
+						<div class="nueva-oper__campo">
+							<label class="" for="monto-oper-input">Monto</label>
+							<input
+								type="number"
+								class="nueva-oper__campo--cu"
+								id="monto-oper-input"
+								placeholder="Ej.: 1"
+							/>
+						</div>
+
+						<div class="nueva-oper__campo">
+							<label class="" for="tipo-oper-select">Tipo</label>
+							<select class="nueva-oper__campo--cu" id="tipo-oper-select">
+								<option value="GANANCIA">GANANCIA</option>
+								<option value="GASTO">GASTO</option>
+							</select>
+						</div>
+
+						<div class="nueva-oper__campo">
+							<label class="" for="categoria-oper-select">Categoría</label>
+							<select class="nueva-oper__campo--cu" id="categoria-oper-select">
+								<!-- java script -->
+							</select>
+						</div>
+
+						<div class="nueva-oper__campo">
+							<label class="etiqueta my-2" for="fecha-oper-input">Fecha</label>
+							<input
+								type="date"
+								class="nueva-oper__campo--cu"
+								id="fecha-oper-input"
+							/>
+						</div>
+
+						<div class="nueva-oper__botones">
+							<button
+								class="nueva-oper__btn nueva-oper__btn--agr nueva-oper__btn--agr"
+								id="btn-agregar-oper"
+							>
+								<span class="material-symbols-outlined"> add_circle </span>
+							</button>
+							<button
+								class="nueva-oper__btn nueva-oper__btn--del"
+								id="btn-cancelar-oper"
+							>
+								<span class="material-symbols-outlined"> cancel</span>
+							</button>
+						</div>
+					</div>
+				</div>
+			</section>
 			<!-- ==========================================  -->
 			<!-- ============= MENÚ CATEGORÍAS ============  -->
 			<section class="categoria ocultar" id="cont-categorias">

@@ -59,7 +59,7 @@ const contenedor_menuReportes = document.getElementById("cont-menu-reportes");
 function mostrar(mostrar) {
 	contenedor_menuInicio.classList.add("ocultar");
 	contenedor_menuBalance.classList.add("ocultar");
-	//--
+	cont_nueva_oper.classList.add("ocultar"); //por si esta en Nueva Oper.
 	contenedor_menuCategorias.classList.add("ocultar");
 	contenedor_menuReportes.classList.add("ocultar");
 
