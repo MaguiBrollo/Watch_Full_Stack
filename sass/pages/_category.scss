@@ -1,144 +1,141 @@
 /*==========================================================*/
 /*--------------- << Menú Categorías  >> -------------------*/
-.section-categ {
+.categoria {
 	@include flex-dir-al-jus(x, column, center, center);
 	@include caja(var(--colTer), 90%, auto);
 	max-width: var(--maxAncho);
-	div {
+
+	&__cont {
 		font-size: 0.8rem;
 		@include flex-dir-al-jus(flex, column, center, center);
+	}
+	&__tit-img {
+		width: 100%;
+		@include flex-dir-al-jus(flex, row, x, x);
+	}
+	&__tit {
+		@extend .lora-i-n; //fonts.scss
+		font-size: 1.8rem;
+		width: 85%;
+	}
+	&__img {
+		width: 10%;
+		margin-bottom: 5px;
+	}
 
-		.categ-tit-img {
-			width: 100%;
-			@include flex-dir-al-jus(flex, row, x, x);
-			h2 {
-				@extend .lora-i-n; //fonts.scss
-				font-size: 1.8rem;
-				width: 85%;
-			}
-			img {
-				width: 10%;
-				margin-bottom: 5px;
-			}
+	//--------
+	&__crud {
+		@include flex-dir-al-jus(flex, column, x, x);
+		width: 100%;
+	}
+	&__form {
+		width: 100%;
+
+		@include flex-dir-al-jus(flex, row, x, space-between);
+		padding: 5px;
+		border: 5px double var(--colSec);
+	}
+	&__form-input {
+		@include flex-dir-al-jus(flex, row, x, x);
+		gap: 10px;
+	}
+	&__input-nom-cat {
+		background-color: var(--colFondoMain);
+		border: 1px solid transparent;
+		border-radius: 4px;
+		font-size: 0.9rem;
+		height: 35px;
+		padding-left: 6px;
+	}
+
+	&__btn-aeb {
+		@include flex-dir-al-jus(flex, row, x, x);
+	}
+	&__btn {
+		@include boton(var(--colFondoMain), 40px, false);
+		cursor: pointer;
+
+		&--agr {
+			color: var(--colVerde);
+			display: flex;
 		}
+		&--edi {
+			color: var(--colVerde);
+			display: none;
+		}
+		&--bor {
+			color: var(--colRojo);
+		}
+	}
 
-		.categ-form-crud {
-			@include flex-dir-al-jus(flex, column, x, x);
-			width: 100%;
+	&_mns-input {
+		@include flex-dir-al-jus(flex, row, x, flex-start);
+		width: 100%;
+		margin-bottom: 15px;
+		padding-left: 15px;
+		color: var(--colVerde);
+		font-size: 0.8rem;
+	}
+	&__lista {
+		width: 100%;
+		border: 5px double var(--colSec);
+      margin-top: 10px;
+		//margin-bottom: 30px;
+	}
+	&__lista-titulo {
+		backdrop-filter: sepia(20%);
+		width: 100%;
+		height: 27px;
+		border-bottom: 1px solid var(--colSec);
+		@include flex-dir-al-jus(flex, row, x, x);
+	}
+	&__nombre {
+		@include flex-dir-al-jus(flex, x, x, center);
+		width: 70%;
+	}
 
-			.form {
-				width: 100%;
-				.div-form {
-					width: 100%;
-					@include flex-dir-al-jus(flex, row, x, space-between);
-					padding: 5px;
-					border: 5px double var(--colSec);
+	&__acciones {
+		@include flex-dir-al-jus(flex, x, x, center);
+		width: 30%;
+	}
 
-					.input {
-						@include flex-dir-al-jus(flex, row, x, x);
-						gap: 10px;
-						input {
-							background-color: var(--colFondoMain);
-							border: 1px solid transparent;
-							border-radius: 4px;
-							font-size: 0.9rem;
-							height: 35px;
-							padding-left: 6px;
-						}
-					}
+	&__listado {
+		@include flex-dir-al-jus(flex, column, x, flex-start);
+		max-height: 40vh;
+		min-height: 40vh;
+		overflow-y: auto;
+		width: 100%;
+	}
+	&__listado-fila {
+		@include flex-dir-al-jus(flex, row, x, x);
+		width: 100%;
+		height: 27px;
+	}
+	&__listado-fila:hover {
+		backdrop-filter: sepia(20%);
+	}
 
-					.btn-can-acep {
-						@include flex-dir-al-jus(x, row, x, x);
-						button {
-							@include boton(var(--colFondoMain), 40px, false);
-							cursor: pointer;
-						}
-						.agr {
-							color: var(--colVerde);
-							display: flex;
-						}
-						.edi {
-							color: var(--colVerde);
-							display: none;
-						}
-						.del {
-							color: var(--colRojo);
-						}
-					}
-				}
-			}
-			.mns-input-cat {
-				@include flex-dir-al-jus(flex, row, x, flex-start);
-				width: 100%;
-				margin-bottom: 15px;
-				padding-left: 15px;
-				color: var(--colVerde);
-				font-size: 0.8rem;
-			}
-			.categ-tabla {
-				width: 100%;
-				border: 5px double var(--colSec);
-				//margin-bottom: 30px;
+	&__listado-nombres {
+		@include flex-dir-al-jus(flex, x, x, flex-start);
+		padding-left: 15px;
+		width: 70%;
+	}
+	&__listado-iconos {
+		@include flex-dir-al-jus(flex, row, x, center);
+		width: 30%;
+		gap: 20px;
 
-				.categ-tabla-titulo {
-					backdrop-filter: sepia(20%);
-					width: 100%;
-					height: 27px;
-					border-bottom: 1px solid var(--colSec);
-					@include flex-dir-al-jus(flex, row, x, x);
-
-					.categ-nombre {
-						@include flex-dir-al-jus(flex, x, x, center);
-						width: 70%;
-					}
-
-					.categ-acciones {
-						@include flex-dir-al-jus(flex, x, x, center);
-						width: 30%;
-					}
-				}
-				.categ-tabla-listado {
-					@include flex-dir-al-jus(flex, column, x, flex-start);
-					max-height: 40vh;
-					min-height: 40vh;
-					overflow-y: auto;
-					width: 100%;
-
-					.categ-tabla-fila {
-						@include flex-dir-al-jus(flex, row, x, x);
-						width: 100%;
-						height: 27px;
-
-						.categ-tabla-nombres {
-							@include flex-dir-al-jus(flex, x, x, flex-start);
-							padding-left: 15px;
-							width: 70%;
-						}
-						.categ-tabla-iconos {
-							@include flex-dir-al-jus(flex, row, x, center);
-							width: 30%;
-							gap: 20px;
-
-							.edi {
-								color: var(--colVerde);
-								cursor: pointer;
-							}
-							.del {
-								color: var(--colRojo);
-								cursor: pointer;
-							}
-
-							.edi:hover,
-							.del:hover {
-								filter: drop-shadow(16px 16px 20px var(--colSec)) invert(75%);
-							}
-						}
-					}
-					.categ-tabla-fila:hover {
-						backdrop-filter: sepia(20%);
-					}
-				}
-			}
+		&--edi {
+			color: var(--colVerde);
+			cursor: pointer;
+		}
+		&--del {
+			color: var(--colRojo);
+			cursor: pointer;
+		}
+		&--edi:hover,
+		&--del:hover {
+			filter: drop-shadow(16px 16px 20px var(--colSec)) invert(75%);
 		}
 	}
 }
@@ -146,20 +143,18 @@
 //--------------------------------------------
 //$md: "768px" ver en varibales.scss;
 @media (min-width: #{$md}px) {
-	.section-categ {
-		div {
+	categoria {
+		&__cont {
 			font-size: 1rem;
+		}
 
-			.categ-form-crud {
-				width: 80%;
+		&__crud {
+			width: 80%;
+		}
 
-				.categ-tabla {
-					.categ-tabla-listado {
-						max-height: 50vh;
-						min-height: 50vh;
-					}
-				}
-			}
+		&__listado {
+			max-height: 50vh;
+			min-height: 50vh;
 		}
 	}
 }

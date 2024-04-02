@@ -88,13 +88,13 @@ function mostrarCategorias(listCat) {
 	else {
 		for (const cat of listCat) {
 			categ_tabla_listado.innerHTML += `
-		<div class="categ-tabla-fila">
-				<div class="categ-tabla-nombres">${cat.id}-${cat.nombre}</div>
-				<div class="categ-tabla-iconos">
+		<div class="categoria__listado-fila">
+				<div class="categoria__listado-nombres">${cat.id}-${cat.nombre}</div>
+				<div class="categoria__listado-iconos">
 
-					<span onClick="editarCategoria(${cat.id})"  class="material-symbols-outlined edi"> edit </span>
+					<span onClick="editarCategoria(${cat.id})" class="material-symbols-outlined categoria__listado-iconos--edi"> edit </span>
 					
-					<span onClick="borrarCategoria(${cat.id})" class="material-symbols-outlined del"> delete </span>
+					<span onClick="borrarCategoria(${cat.id})" class="material-symbols-outlined categoria__listado-iconos--bor"> delete </span>
 					
 				</div>
 		</div>`;
