@@ -34,7 +34,7 @@ function inicializarFechaInput(id_del_input, que_hago) {
 function inicializarFechas() {
 	inicializarFechaInput("filtro-fecha-desde", "restarMes");
 	inicializarFechaInput("filtro-fecha-hasta", "noRestarMes");
-	inicializarFechaInput("fecha-oper-input", "noRestarMes");
+	//inicializarFechaInput("fecha-oper-input", "noRestarMes");
 }
 
 // ===================================================
@@ -185,8 +185,6 @@ function filtrarOperaciones() {
 		const fechaHasta = new Date(`${filtro_fecha_hasta.value}T00:00:00`);
 		const orden = filtro_orden.value;
 
-		console.log(operFiltros);
-
 		/* Filtrar por Tipo */
 		if (tipo !== "TODO") {
 			operFiltros = operFiltros.filter((oper) => oper.tipo === tipo);
@@ -333,15 +331,15 @@ function mostrarCategoriasOper(listCat) {
 	}
 
 	//Mostrar en Nueva Operación
-	categoria_oper_select.innerHTML = "";
-	if (listCat.length === 0) {
-		categoria_oper_select.innerHTML += `<option value=0>Sin Categorías</option>`;
-	} else {
-		for (const cat of listCat) {
-			categoria_oper_select.innerHTML += `
-			<option value=${cat.id}>${cat.nombre}</option>`;
-		}
-	}
+	// categoria_oper_select.innerHTML = "";
+	// if (listCat.length === 0) {
+	// 	categoria_oper_select.innerHTML += `<option value=0>Sin Categorías</option>`;
+	// } else {
+	// 	for (const cat of listCat) {
+	// 		categoria_oper_select.innerHTML += `
+	// 		<option value=${cat.id}>${cat.nombre}</option>`;
+	// 	}
+	// }
 }
 
 // ===================================================
@@ -357,15 +355,15 @@ btn_nueva_oper.addEventListener("click", () => {
 const btn_agregar_oper = document.getElementById("btn-agregar-oper");
 const btn_cancelar_oper = document.getElementById("btn-cancelar-oper");
 
-btn_agregar_oper.addEventListener("click", () => {
-	contenedor_menuBalance.classList.remove("ocultar"); //viene de main.js
-	cont_nueva_oper.classList.add("ocultar");
-});
+// btn_agregar_oper.addEventListener("click", () => {
+// 	contenedor_menuBalance.classList.remove("ocultar"); //viene de main.js
+// 	cont_nueva_oper.classList.add("ocultar");
+// });
 
-btn_cancelar_oper.addEventListener("click", () => {
-	contenedor_menuBalance.classList.remove("ocultar"); //viene de main.js
-	cont_nueva_oper.classList.add("ocultar");
-});
+// btn_cancelar_oper.addEventListener("click", () => {
+// 	contenedor_menuBalance.classList.remove("ocultar"); //viene de main.js
+// 	cont_nueva_oper.classList.add("ocultar");
+// });
 
 // ======================================================== //
 // Funciones que deben ejecutarse al cargar menú Balance
