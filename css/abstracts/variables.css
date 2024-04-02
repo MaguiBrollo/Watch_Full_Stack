@@ -1,0 +1,36 @@
+@charset "UTF-8";
+/*====================================================================*/
+/*--------------- << _variables: Variables globales >> ---------------*/
+:root {
+  /* Modo claro*/
+  --colPpal: #cddbff;
+  --colSec: #9aade5;
+  --colTer: #bfccf5;
+  --colHoverBtn: #f2f9ff;
+  --colFondoMain: rgb(232, 241, 255);
+  --colFuente: #111827; /*  gray 900*/
+  --colTituloPpal: #fcc656;
+  --colVerde: rgb(34, 100, 34);
+  --colRojo: rgb(178, 59, 59);
+  color-scheme: light; /*color por defecto de win, para barras de scroll*/
+  --transition: color 0.1s, background-color 0.2s ease-in-out;
+  --md: 768;
+  --lg: 1024;
+  --maxAncho: 1000px;
+}
+
+:root[data-theme-color=dark] {
+  /* Modo oscuro*/
+  --colSec: #1f2937; /*grey  800 */
+  --colPpal: #575d66; /* ERA grey 700 cambié */
+  --colTer: #797e85; /* */
+  --colHoverBtn: #6b7280; /*grey  500 */
+  --colFondoMain: #9ca3af; /*grey  400 */
+  --colFuente: #f4f4f5; /*  gray 100*/
+  --colTituloPpal: #fcc656;
+  --colVerde: rgb(20, 54, 20);
+  --colRojo: rgb(58, 20, 20);
+  color-scheme: dark; /*color por defecto de win, para barras de scroll*/
+}
+
+/*# sourceMappingURL=variables.css.map */

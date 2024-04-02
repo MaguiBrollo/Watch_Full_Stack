@@ -1,0 +1,367 @@
+@charset "UTF-8";
+/* main.scss*/
+/* @import  */
+/*=====================================================================*/
+/*------------------- << _reset: Estilos Básicos >> -------------------*/
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+  transition: var(--transition);
+}
+
+html {
+  height: 100vh;
+}
+
+body {
+  height: 100%;
+  /* 100% del padre, que es el html*/
+}
+
+/*===================================================================*/
+/*--------------------- << _fonts: Fuentes >> -----------------------*/
+@font-face {
+  font-family: "Lora";
+  src: url("../fonts/Lora-Italic-VariableFont_wght.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/Montserrat-VariableFont_wght.ttf");
+  font-weight: 500;
+  font-style: italic;
+}
+.lora-i-n, .main .reportes div h2, .tamanio-frase, .footer__h3, .header__cont-nav, .header__logo-ada--nombre {
+  font-family: "Lora";
+  font-style: italic;
+  font-weight: normal;
+}
+
+.montserrat-n-n, body {
+  font-family: "Montserrat";
+  font-weight: 500;
+  font-style: normal;
+}
+
+/*====================================================================*/
+/*--------------- << _variables: Variables globales >> ---------------*/
+:root {
+  /* Modo claro*/
+  --colPpal: #cddbff;
+  --colSec: #9aade5;
+  --colTer: #bfccf5;
+  --colHoverBtn: #f2f9ff;
+  --colFondoMain: rgb(232, 241, 255);
+  --colFuente: #111827; /*  gray 900*/
+  --colTituloPpal: #fcc656;
+  --colVerde: rgb(34, 100, 34);
+  --colRojo: rgb(178, 59, 59);
+  color-scheme: light; /*color por defecto de win, para barras de scroll*/
+  --transition: color 0.1s, background-color 0.2s ease-in-out;
+  --md: 768;
+  --lg: 1024;
+  --maxAncho: 1000px;
+}
+
+:root[data-theme-color=dark] {
+  /* Modo oscuro*/
+  --colSec: #1f2937; /*grey  800 */
+  --colPpal: #575d66; /* ERA grey 700 cambié */
+  --colTer: #797e85; /* */
+  --colHoverBtn: #6b7280; /*grey  500 */
+  --colFondoMain: #9ca3af; /*grey  400 */
+  --colFuente: #f4f4f5; /*  gray 100*/
+  --colTituloPpal: #fcc656;
+  --colVerde: rgb(20, 54, 20);
+  --colRojo: rgb(58, 20, 20);
+  color-scheme: dark; /*color por defecto de win, para barras de scroll*/
+}
+
+/*====================================================================*/
+/*-------------------------- << MIXINS  >> ---------------------------*/
+/*====================================================================*/
+/*-------------------------  << HEADER  >> ---------------------------*/
+.header-ocultar {
+  display: none;
+}
+
+.header-mostrar {
+  display: flex;
+}
+
+.header {
+  width: 100%;
+  height: auto;
+  background-color: var(--colSec);
+  display: flex;
+  flex-direction: column;
+}
+.header__cont-titulo {
+  color: var(--colFuente);
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.header__logo-ada {
+  width: 50%;
+  height: 80px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.header__logo-ada--nombre {
+  margin-left: 10px;
+  font-size: 2rem;
+  color: var(--colTituloPpal);
+}
+.header__cont-modo-hamb {
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+}
+.header__modo {
+  margin: 0px 5px;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: var(--colSec);
+  width: 35px;
+  display: flex;
+  justify-content: center;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+.header__cont-hamb {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+}
+.header__hamb {
+  margin: 0px 5px;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: var(--colSec);
+  width: 35px;
+  display: flex;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+}
+.header__hamb.header-ocultar {
+  display: none;
+}
+.header__modo:hover, .header__menu-hamb:hover {
+  background-color: var(--colHoverBtn);
+}
+.header__nav {
+  width: 100%;
+  justify-content: flex-start;
+  background-color: var(--colTer);
+}
+.header__cont-nav {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.header__nav-a {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-decoration: none;
+  color: var(--colFuente);
+  font-size: 1rem;
+  margin-left: 10px;
+  padding: 5px;
+  cursor: pointer;
+}
+.header__nav-a-span {
+  padding-right: 5px;
+  font-size: 1rem;
+}
+.header__nav-a:hover {
+  font-weight: bold;
+}
+.header__nav-a:hover .header__nav-a-span {
+  font-weight: bold;
+}
+
+@media (min-width: 768px) {
+  .header {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+  .header__cont-titulo {
+    margin-right: 0px;
+  }
+  .header__logo-ada--nombre {
+    font-size: 2.4rem;
+  }
+  .header__cont-modo-hamb {
+    width: 100%;
+  }
+  .header__cont-hamb {
+    display: none;
+    padding-right: 0px;
+  }
+  .header__nav {
+    width: auto;
+    background-color: var(--colSec);
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding-right: 10px;
+  }
+  .header__cont-nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  .header__span-modo, .header__nav-a, .header__nav-a-span {
+    font-size: 1.2rem;
+  }
+}
+/*====================================================================*/
+/*-------------------------  << FOOTER  >> ---------------------------*/
+.color-fuente, .footer__h3, .footer__link-red-social {
+  color: var(--colFuente);
+  font-size: 1.1rem;
+}
+
+.footer {
+  width: 100%;
+  height: 80px;
+  background-color: var(--colSec);
+  text-align: center;
+}
+.footer__nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.footer__link-red-social {
+  width: 60px;
+  margin: 10px 0px;
+  text-decoration: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.footer__icono-red-social {
+  color: var(--colFuente);
+  background-color: var(--colSec);
+  width: 1.8rem;
+  height: 1.8rem;
+  font-size: 1.2rem;
+  border: 1px solid var(--colFuente);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.footer__icono-red-social:hover {
+  color: var(--colSec);
+  background-color: var(--colFuente);
+}
+.footer__span {
+  color: var(--colRojo);
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+/*====================================================================*/
+/*--------------------------  << HOME  >>  ---------------------------*/
+body {
+  background-color: var(--colFondoMain);
+  min-height: 100%;
+  font-family: "Montserrat";
+}
+
+.verde {
+  color: var(--colVerde);
+}
+
+.rojo {
+  color: var(--colRojo);
+}
+
+.ocultar {
+  display: none;
+}
+
+.tamanio-frase {
+  font-size: clamp(1rem, -0.0698rem + 3.0387vw, 1.875rem);
+  line-height: 2.25rem;
+}
+
+/*==========================================================*/
+.main {
+  min-height: calc(100% - 80px - 80px);
+  display: flex;
+  justify-content: center;
+  /*------------------ << Menú Inicio >> --------------------*/
+}
+.main .inicio {
+  color: var(--colFuente);
+  max-width: var(--maxAncho);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 15px auto;
+  padding: 15px;
+  border-radius: 5px;
+  background-color: var(--colTer);
+  box-shadow: 8px 8px 5px -8px rgb(164, 163, 163);
+  width: 90%;
+  height: auto;
+}
+.main .inicio.ocultar {
+  display: none;
+}
+.main .inicio__cont-img-p {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.main .inicio__img {
+  width: 70%;
+}
+.main .reportes {
+  color: var(--colFuente);
+  max-width: var(--maxAncho);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 15px auto;
+  padding: 15px;
+  border-radius: 5px;
+  background-color: var(--colTer);
+  box-shadow: 8px 8px 5px -8px rgb(164, 163, 163);
+  width: 90%;
+  height: auto;
+}
+.main .reportes div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.main .reportes div .img-reporte {
+  width: 70%;
+}
+
+/*# sourceMappingURL=main.css.map */

@@ -1,0 +1,68 @@
+/*====================================================================*/
+/*--------------------------  << HOME  >>  ---------------------------*/
+body {
+	background-color: var(--colFondoMain);
+	min-height: 100%;
+	font-family: "Montserrat";
+	@extend .montserrat-n-n; //_fonts.scss
+}
+
+.verde {
+	color: var(--colVerde);
+}
+.rojo {
+	color: var(--colRojo);
+}
+
+.ocultar {
+	display: none;
+}
+
+.tamanio-frase {
+	font-size: clamp(1rem, -0.0698rem + 3.0387vw, 1.875rem);
+	line-height: 2.25rem;
+	@extend .lora-i-n; //_fonts.scss
+}
+
+/*==========================================================*/
+// ============================= MAIN =========0============
+.main {
+	min-height: calc(100% - 80px - 80px);
+	@include flex-dir-al-jus(flex, x, x, center);
+
+	/*------------------ << Menú Inicio >> --------------------*/
+	.inicio {
+		color: var(--colFuente);
+		max-width: var(--maxAncho);
+		@include flex-dir-al-jus(flex, column, center, center);
+		@include caja(var(--colTer), 90%, auto);
+
+		&.ocultar {
+			display: none;
+		}
+
+		&__cont-img-p {
+			@include flex-dir-al-jus(flex, column, center, center);
+		}
+		&__img {
+			width: 70%;
+		}
+	}
+
+	.reportes {
+		color: var(--colFuente);
+		max-width: var(--maxAncho);
+		@include flex-dir-al-jus(x, column, center, center);
+		@include caja(var(--colTer), 90%, auto);
+		div {
+			@include flex-dir-al-jus(flex, column, center, center);
+			h2 {
+				@extend .lora-i-n; //fonts.scss
+			}
+
+			.img-reporte {
+				width: 70%;
+			}
+		}
+	}
+}
