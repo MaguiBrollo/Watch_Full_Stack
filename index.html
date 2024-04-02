@@ -121,10 +121,166 @@
 					<!-- contenedor BALANCE -->
 					<div class="balance__cont-balance">
 						<h2 class="balance__h2">Balance</h2>
+
+						<div class="balance__balance-numeros">
+							<div class="balance__balance-numeros--cont">
+								<p>Ganancias</p>
+								<div id="balance-ganancias">$0,00</div>
+							</div>
+							<div class="balance__balance-numeros--cont">
+								<p>Gastos</p>
+								<div id="balance-gastos">$0,00</div>
+							</div>
+							<div class="balance__balance-numeros--cont">
+								<p>Total</p>
+								<div id="balance-total">$0,00</div>
+							</div>
+						</div>
 					</div>
 
 					<!-- contenedor TITULO-FILTRO -->
-					<div class="balance__cont-filtros-ppal"></div>
+					<div class="balance__cont-filtros-ppal">
+						<div class="balance__filtros-titulo">
+							<h2 class="balance__h2">Filtros</h2>
+							<a class="balance__ocultar-filtros" id="ocultar-filtros"
+								><i class="fa-regular fa-eye"></i>
+								Mostrar Filtros
+							</a>
+						</div>
+						<!-- contenedor FILTROS (se oculta) -->
+						<div class="ocultar" id="contenedor-filtros">
+							<div class="balance__cont-filtro">
+								<p class="">Tipo</p>
+								<div class="">
+									<select
+										class="balance__filtro-cu"
+										id="filtro-tipo"
+										aria-label="Seleccionar por tipo operación"
+									>
+										<option value="TODO" selected>TODO</option>
+										<option value="GANANCIA">GANANCIA</option>
+										<option value="GASTO">GASTO</option>
+									</select>
+								</div>
+							</div>
+
+							<div class="balance__cont-filtro">
+								<p class="">Categorías</p>
+								<div class="">
+									<select
+										class="balance__filtro-cu"
+										id="filtro-categoria"
+										aria-label="Seleccionar por categoría"
+									>
+										<!-- <option value="TODAS">TODAS</option> -->
+										<!-- las categorías se cargan en script.js -->
+									</select>
+								</div>
+							</div>
+
+							<div class="balance__cont-filtro">
+								<p class="font-bold">Fecha desde</p>
+								<div class="">
+									<input
+										class="balance__filtro-cu"
+										type="date"
+										value=""
+										id="filtro-fecha-desde"
+										aria-label="Seleccionar por fecha desde"
+									/>
+								</div>
+							</div>
+
+							<div class="balance__cont-filtro">
+								<p class="">Fecha hasta</p>
+								<div class="">
+									<input
+										class="balance__filtro-cu"
+										type="date"
+										value=""
+										id="filtro-fecha-hasta"
+										aria-label="Seleccionar por fecha desde"
+									/>
+								</div>
+							</div>
+
+							<div class="balance__cont-filtro">
+								<p class="">Ordenar por</p>
+								<div class="">
+									<select
+										class="balance__filtro-cu"
+										id="filtro-orden"
+										aria-label="Seleccionar por ordenar por"
+									>
+										<option value="mas_reciente">Más reciente</option>
+										<option value="menos_reciente">Menos reciente</option>
+										<option value="mayor_monto">Mayor monto</option>
+										<option value="menor_monto">Menor monto</option>
+										<option value="A_Z">A .. Z Descripción</option>
+										<option value="Z_A">Z .. A Descripción</option>
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- contenedor SIN/CON OPERACIONES -->
+				<div class="balance__cont-sin-con-oper">
+					<div class="balance__titulo">
+						<h2 class="balance__h2">Operaciones</h2>
+						<img
+							class="balance__img--pequeña img-js"
+							src="img/operaciones.svg"
+							alt="Imagen de operaciones"
+							aria-label="Imagen de Operaciones"
+						/>
+					</div>
+					<div class="balance__btn-nueva-oper-cont">
+						<button class="balance__btn-nueva-oper" id="btn-nueva-oper">
+							<span class="material-symbols-outlined balance__btn-mas"
+								>add_circle</span
+							>
+							Nueva Operación
+						</button>
+					</div>
+					<!-- contenedor SIN OPERACIONES -->
+					<div class="balance__cont-sin-oper" id="cont-sin-oper">
+						<img
+							class="balance__img img_js"
+							src="img/operaciones.svg"
+							alt="Imagen de Balance"
+							aria-label="Imagen de Balance"
+						/>
+
+						<p class="balance__p-sin-oper">
+							No se puede generar el listado de operaciones.<br />
+							Diríjase a "Nueva Operación" y registre nuevas operaciones. O
+							seleccione los "Filtros" deseadas.
+						</p>
+					</div>
+
+					<!-- contenedor CON OPERACIONES -->
+					<div class="balance__operacion ocultar" id="cont-con-oper">
+						<div class="balance__operacion-encabezado">
+							<div class="balance__operacion-2filas-a">
+								<div class="balance__fila-desc">DESCRIPCIÓN</div>
+								<div class="balance__fila-cate">CATEGORÍA</div>
+							</div>
+							<div class="balance__operacion-2filas-b">
+								<div class="balance__fila-fech">FECHA</div>
+								<div class="balance__fila-mont">MONTO</div>
+								<div class="balance__fila-btn">ACTOS</div>
+							</div>
+						</div>
+						<div class="balance__operacion-listado" id="con-oper-listado">
+							<!--
+								<div class="balance__operacion-listado-fila">
+									se completa en balance.js
+								</div>
+							-->
+						</div>
+					</div>
 				</div>
 			</section>
 
@@ -246,4 +402,5 @@
 	<!-- JavaScript -->
 	<script src="js/main.js"></script>
 	<script src="js/category.js"></script>
+	<script src="js/balance.js"></script>
 </html>

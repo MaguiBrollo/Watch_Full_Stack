@@ -1,0 +1,314 @@
+/*==========================================================*/
+/*------------------ << Menú Balance >> --------------------*/
+
+/*==========================================================*/
+.balance {
+	@include flex-dir-al-jus(x, column, x, x);
+	width: 100%;
+
+	&__cont-bal-fil {
+		@include flex-dir-al-jus(flex, column, center, x);
+		width: 100%;
+		height: auto;
+	}
+
+	//------------- balance números
+	&__cont-balance {
+		@include caja(var(--colTer), 90%, auto);
+		@include flex-dir-al-jus(flex, column, x, x);
+	}
+
+	&__h2 {
+		@extend .lora-i-n; //fonts.scss
+		font-size: 1.7rem;
+	}
+
+	&__balance-numeros {
+		//margin-top: 15px;
+		//font-weight: 0.8rem;
+
+		&--cont {
+			@include flex-dir-al-jus(flex, row, x, space-between);
+			margin-top: 20px;
+		}
+	}
+
+	//--------------- filtros
+	&__cont-filtros-ppal {
+		@include caja(var(--colTer), 90%, auto);
+	}
+
+	&__filtros-titulo {
+		@include flex-dir-al-jus(flex, row, center, space-between);
+		margin-bottom: 15px;
+	}
+	&__ocultar-filtros {
+		@include flex-dir-al-jus(flex, row, center, flex-end);
+		width: 58%;
+		font-size: 0.8rem;
+		cursor: pointer;
+		gap: 5px;
+	}
+
+	&__cont-filtro {
+		margin-top: 15px;
+		@extend .montserrat-n-n; //fonts.scss
+	}
+
+	&__filtro-cu {
+		height: 30px;
+		border: 1px solid var(--colPpal);
+		border-radius: 5px;
+		width: 100%;
+		cursor: pointer;
+		@extend .montserrat-n-n; //fonts.scss
+	}
+
+	//----------------- operaciones
+	&__cont-sin-con-oper {
+		@include caja(var(--colTer), 90%, auto);
+		min-height: 562px;
+	}
+
+	&__titulo {
+		@include flex-dir-al-jus(flex, x, center, space-between);
+	}
+
+	&__img--pequeña {
+		width: 10%;
+		margin-bottom: 5px;
+	}
+
+	&__btn-nueva-oper-cont {
+		@include flex-dir-al-jus(flex, x, x, flex-end);
+		margin: 10px 2px;
+	}
+	&__btn-nueva-oper {
+		@include boton(var(--colSec), 160px, false);
+		@include flex-dir-al-jus(x, x, center, x);
+		@extend .montserrat-n-n; //fonts.scss
+		font-size: 0.8rem;
+		cursor: pointer;
+	}
+	&__btn-mas {
+		color: var(--colVerde);
+		margin-right: 5px;
+	}
+
+	//sin operaciones
+	&__cont-sin-oper {
+		@include flex-dir-al-jus(flex, column, center, center);
+		height: 500px;
+		&.ocultar {
+			display: none;
+		}
+	}
+	&__img {
+		margin: 15px;
+		width: 50%;
+		margin-bottom: 20px;
+	}
+	&__p-sin-oper {
+		color: var(--colRojo);
+		text-align: center;
+		@extend .lora-i-n; //fonts.scss
+	}
+
+	//CON operaciones
+	&__operacion {
+		width: 100%;
+		border: 5px double var(--colSec);
+	}
+	&__operacion-encabezado {
+		@include flex-dir-al-jus(flex, column, center, x);
+		backdrop-filter: sepia(20%);
+		border-bottom: 1px solid var(--colSec);
+		font-size: 0.8rem;
+		padding-left: 5px;
+	}
+
+	&__operacion-2filas-a,
+	&__operacion-2filas-b {
+		@include flex-dir-al-jus(flex, row, center, x);
+		width: 100%;
+	}
+	&__fila-desc {
+		width: 60%;
+	}
+	&__fila-cate {
+		width: 40%;
+		font-weight: bold;
+	}
+
+	&__fila-fech {
+		width: 34%;
+		text-align: center;
+	}
+	&__fila-mont {
+		width: 44%;
+		text-align: right;
+		margin-right: 5px;
+	}
+	&__fila-btn {
+		width: 20%;
+	}
+
+	&__operacion-listado {
+		@include flex-dir-al-jus(flex, column, x, x);
+		font-size: 0.8rem;
+		max-height: 57vh;
+		min-height: 57vh;
+		overflow-y: auto;
+		width: 100%;
+	}
+	&__operacion-listado-fila {
+		@include flex-dir-al-jus(flex, column, center, space-between);
+		width: 100%;
+		border-bottom: 1px solid var(--colSec);
+		padding: 5px 0px 5px 5px;
+	}
+
+	&__fila-btn {
+		@include flex-dir-al-jus(flex, row, x, center);
+		border-left: 1px solid var(--colSec);
+		gap: 5px;
+
+		&--edi {
+			color: var(--colVerde);
+			cursor: pointer;
+			font-size: 1.3rem;
+		}
+		&--del {
+			color: var(--colRojo);
+			cursor: pointer;
+			font-size: 1.3rem;
+		}
+
+		&--edi:hover,
+		&--del:hover {
+			filter: drop-shadow(16px 16px 20px var(--colSec)) invert(75%);
+		}
+	}
+}
+
+//------- media de Filtros -------------------------------------
+//$lg: 1024 ver en varibales.scss;
+@media (min-width: #{$lg}px) {
+	.balance {
+		@include flex-dir-al-jus(flex, row, x, x);
+		width: 100%;
+		max-width: var(--maxAncho);
+		&.ocultar {
+			display: none;
+		}
+
+		&__h2 {
+			font-size: 1.8rem;
+		}
+
+		&__cont-bal-fil {
+			@include flex-dir-al-jus(flex, x, x, x);
+			width: 40%;
+		}
+
+		.cont-sin-con-oper {
+			width: 60%;
+		}
+		&__cont-sin-oper {
+			height: 80%;
+		}
+	}
+}
+
+//--------------- Media de operaciones
+//$md: "768px" ver en varibales.scss;
+@media (min-width: #{$md}px) {
+	.balance {
+		//----------- CON OPERACIONES
+		&__operacion-listado-fila {
+			@include flex-dir-al-jus(flex, row, x, x);
+			//width: 100%;
+		}
+		&__operacion-encabezado {
+			@include flex-dir-al-jus(flex, row, x, x);
+			height: 27px;
+		}
+		&__operacion-2filas-a {
+			width: 60%;
+		}
+		&__operacion-2filas-b {
+			width: 40%;
+		}
+	}
+}
+
+//-------- NUEVA OPERACIÓN -------
+.nueva-oper {
+	@include caja(var(--colTer), 90%, auto);
+	@extend .montserrat-n-n; //fonts.scss
+	@include flex-dir-al-jus(x, column, x, x);
+	&.ocultar {
+		display: none;
+	}
+	&__titulo {
+		width: 100%;
+		@include flex-dir-al-jus(flex, row, center, space-between);
+	}
+
+	&__img {
+		width: 10%;
+		margin-bottom: 5px;
+	}
+
+	&__borde {
+		border: 5px double var(--colSec);
+		padding: 15px;
+		margin-top: 20px;
+	}
+
+	&__campo {
+		@include flex-dir-al-jus(flex, column, x, x);
+		margin: 20px 0px;
+
+		&--cu {
+			height: 30px;
+			border: 1px solid var(--colPpal);
+			border-radius: 5px;
+			width: 100%;
+			cursor: pointer;
+			margin-top: 10px;
+			@extend .montserrat-n-n; //fonts.scss
+		}
+	}
+	&__span {
+		font-size: 0.8rem;
+	}
+	&__botones {
+		@include flex-dir-al-jus(flex, row, x, flex-end);
+		margin-top: 10px;
+	}
+	&__btn {
+		@include boton(var(--colFondoMain), 40px, false);
+		cursor: pointer;
+
+		&--agr {
+			color: var(--colVerde);
+			display: flex;
+		}
+		&--edi {
+			color: var(--colVerde);
+			display: none;
+		}
+		&--del {
+			color: var(--colRojo);
+		}
+	}
+}
+
+//------- Media de Nueva operación ------------
+//$lg: "1024" ver en varibales.scss;
+@media (min-width: #{$lg}px) {
+	.nueva-oper {
+		@include caja(var(--colTer), 90%, auto);
+	}
+}
