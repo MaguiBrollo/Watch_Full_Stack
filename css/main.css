@@ -549,8 +549,8 @@ body {
     width: 80%;
   }
   .categoria__listado {
-    max-height: 50vh;
-    min-height: 50vh;
+    max-height: 48vh;
+    min-height: 48vh;
   }
 }
 
