@@ -46,8 +46,44 @@
 		color: var(--colRojo);
 		text-align: center;
 		@extend .lora-i-n; //fonts.scss
-      font-size: 1rem;
+		font-size: 1rem;
 	}
+
+	// CON reportes
+	&__cont-con-rep {
+		@include flex-dir-al-jus(flex, column, x, x);
+	}
+
+	&__resumen-cont {
+		width: 100%;
+		@include flex-dir-al-jus(flex, column, x, x);
+		border: 5px solid var(--colSec);
+	}
+
+	&__tit-seccion {
+		@extend .montserrat-n-n; //fonts.scss
+		margin: 5px;
+	}
+	&__resumen-may-gan {
+		@include flex-dir-al-jus(flex, column, x, x);
+		width: 96%;
+		margin: 3px;
+	}
+
+	&__resumen-nombre {
+		width: 100%;
+	}
+	&__resumen-cont-val {
+		@include flex-dir-al-jus(flex, row, x, x);
+		width: 100%;
+	}
+   &__resumen-cont-1{
+      width: 50%;
+      //text balance
+      @include flex-dir-al-jus(flex, x, x, center);
+      text-align: center;
+   }
+
 
 	//--------------------------------------------
 	//$md: "768px" ver en varibales.scss;
@@ -57,8 +93,20 @@
 		&__cont {
 			font-size: 1rem;
 		}
-      &__texto-sin-rep {
-         font-size: 1.2rem;
-      }
+		&__texto-sin-rep {
+			font-size: 1.2rem;
+		}
+
+		//con reportes
+		&__resumen-may-gan {
+			@include flex-dir-al-jus(flex, row, x, x);
+			width: 92%;
+		}
+		&__resumen-nombre {
+			width: 40%;
+		}
+		&__resumen-cont-val {
+			width: 59%;
+		}
 	}
 }

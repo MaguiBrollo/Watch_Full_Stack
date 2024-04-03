@@ -375,7 +375,7 @@
 
 					<!--  =======================================   -->
 					<!-- Esta img se muestra cuando NO hay reportes-->
-					<div class="reporte__cont-sin-rep ocultar" id="cont-sin-reporte">
+					<div class="reporte__cont-sin-rep" id="cont-sin-reporte">
 						<img
 							class="reporte__img"
 							src="img/reportes.svg"
@@ -383,37 +383,22 @@
 							aria-label="Imagen de reportes"
 						/>
 						<h2 class="reporte__texto-sin-rep">
-							No se puede generar REPORTES por falta de "Operaciones". <br>
-							Diríjase	al menú Balance y comience a registrar operaciones.
+							No se puede generar REPORTES por falta de "Operaciones". <br />
+							Diríjase al menú Balance y comience a registrar operaciones.
 						</h2>
 					</div>
 
 					<!--  =======================================   -->
 					<!-- Esta info se muestra cuando SI hay reportes-->
-					<div
-						class="flex flex-col text-sm md:text-base ocultar"
-						id="cont-con-reporte"
-					>
+					<div class="reporte__cont-con-rep" id="cont-con-reporte">
 						<!--            RESUMEN               -->
-						<div
-							class="w-full flex flex-col mb-5 border-2 rounded-lg border-indigo-100 dark:border-gray-400"
-						>
-							<h4 class="text-2xl md:text-3xl m-5">Resumen</h4>
+						<div class="reporte__resumen-cont">
+							<h4 class="reporte__tit-seccion">Resumen</h4>
 							<!--  ============================   -->
-							<div
-								class="w-[92%] sm:w-[96%] pb-2 my-2 mx-3 flex flex-col sm:flex-row border-b-2 border-indigo-100 dark:border-gray-400"
-							>
-								<div class="w-full sm:w-[40%]">
-									Categoría con mayor ganancia:
-								</div>
-
-								<div class="w-full sm:w-[59%] flex flex-row">
-									<div
-										class="w-[50%] text-balance pl-1 flex justify-center items-center rounded-lg bg-blue-100 dark:bg-gray-400"
-										id="cat-may-gana-nom"
-									>
-										xx
-									</div>
+							<div class="reporte__resumen-may-gan">
+								<div class="reporte__resumen-nombre">Categoría con mayor ganancia:</div>
+								<div class="reporte__resumen-cont-val">
+									<div class="reporte__resumen-cont-1" id="cat-may-gana-nom">xx</div>
 
 									<div
 										class="w-[49%] flex justify-end dark:text-cyan-800 items-center"
@@ -428,7 +413,7 @@
 							<div
 								class="w-[92%] sm:w-[96%] pb-2 my-2 mx-3 flex flex-col sm:flex-row border-b-2 border-indigo-100 dark:border-gray-400"
 							>
-								<div class="w-full sm:w-[40%]">Categoría con mayor gasto:</div>
+								<div class="">	Categoría con mayor gasto:</div>
 
 								<div class="w-full sm:w-[59%] flex flex-row">
 									<div
@@ -451,9 +436,7 @@
 							<div
 								class="w-[92%] sm:w-[96%] pb-2 my-2 mx-3 flex flex-col sm:flex-row border-b-2 border-indigo-100 dark:border-gray-400"
 							>
-								<div class="w-full sm:w-[40%]">
-									Categoría con mayor balance:
-								</div>
+								<div class="">Categoría con mayor balance:</div>
 
 								<div class="w-full sm:w-[59%] flex flex-row">
 									<div
@@ -476,7 +459,7 @@
 							<div
 								class="w-[92%] sm:w-[96%] pb-2 my-2 mx-3 flex flex-col sm:flex-row border-b-2 border-indigo-100 dark:border-gray-400"
 							>
-								<div class="w-full sm:w-[40%]">Mes con mayor ganancia:</div>
+								<div class="">Mes con mayor ganancia:</div>
 
 								<div class="w-full sm:w-[59%] flex flex-row">
 									<div
@@ -499,7 +482,7 @@
 							<div
 								class="w-[92%] sm:w-[96%] pb-2 my-2 mx-3 flex flex-col sm:flex-row"
 							>
-								<div class="w-full sm:w-[40%]">Mes con mayor gasto:</div>
+								<div class="">Mes con mayor gasto:</div>
 
 								<div class="w-full sm:w-[59%] flex flex-row">
 									<div
@@ -524,7 +507,7 @@
 						<div
 							class="mb-5 border-2 rounded-lg border-indigo-100 dark:border-gray-400"
 						>
-							<h4 class="text-2xl md:text-3xl m-5">Total por Categorías</h4>
+							<h4 class="reporte__tit-seccion">Total por Categorías</h4>
 
 							<div class="w-[92%] sm:w-[96%] mx-3 flex flex-row">
 								<div class="w-[35%] sm:w-[30%] md:w-[40%]">CATEGORÍA</div>
@@ -547,12 +530,12 @@
 							<!--  ==================   -->
 						</div>
 
+						<!--  ==================================================   -->
 						<!--            total por MES               -->
-
 						<div
 							class="mb-5 border-2 rounded-lg border-indigo-100 dark:border-gray-400"
 						>
-							<h4 class="text-2xl md:text-3xl m-5">Total por Mes</h4>
+							<h4 class="reporte__tit-seccion">Total por Mes</h4>
 
 							<div class="w-[92%] sm:w-[96%] mx-3 flex flex-row">
 								<div class="w-[35%] sm:w-[30%] md:w-[40%]">AÑO - MES</div>
