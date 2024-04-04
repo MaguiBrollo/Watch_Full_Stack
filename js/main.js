@@ -7,7 +7,6 @@ function formatPesos(num) {
 }
 //--------------------------------------
 
-
 /* ================== Menú  - y Menú Hambburguesa  ================ */
 /* Por motivos de que SASS no trabaja correctamente en poner y sacar
 la clase "ocultar", es que debo agregar esta función. md=768 */

@@ -52,6 +52,9 @@
 	// CON reportes
 	&__cont-con-rep {
 		@include flex-dir-al-jus(flex, column, x, x);
+		&.ocultar {
+			display: none;
+		}
 	}
 
 	&__resumen-cont {

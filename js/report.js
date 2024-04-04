@@ -203,7 +203,8 @@ const totales_por_mes = document.getElementById("totales-por-mes");
 
 /* ------------------------------------------------ */
 function mostrarSinReportes() {
-	cont_menu_reporte.classList.remove("ocultar")
+	console.log("pasó por sin rep");
+	cont_menu_reporte.classList.remove("ocultar");
 	cont_sin_reporte.classList.remove("ocultar");
 	cont_con_reporte.classList.add("ocultar");
 }
@@ -211,12 +212,10 @@ function mostrarSinReportes() {
 /* ------------------------------------------------ */
 /* Mostrar CON REPORTES */
 function mostrarConReportes() {
+	console.log("pasó por CON rep");
 	cont_menu_reporte.classList.remove("ocultar");
 	cont_sin_reporte.classList.add("ocultar");
 	cont_con_reporte.classList.remove("ocultar");
-
-	// categReporte = JSON.parse(localStorage.getItem("categorias"));
-	// operaReporte = JSON.parse(localStorage.getItem("operaciones"));
 
 	/* -------------------------- */
 	/*  CATEGORIA CON MAYOR GANANCIA */
@@ -369,68 +368,57 @@ function mostrarConReportes() {
 }
 
 // ===================================================
-// Busca categorías de la base de datos, luego las muestra
-function buscarCategorias() {
-	let promesa = fetch("http://localhost:8080/api_watch/listar", {
-		method: "GET",
-		headers: {
-			Accept: "application/json",
-			"Content-Type": "application/json; charset=utf-8",
-		},
-	});
+// Busca categorías de la DBF
+/* ============== LISTAR CATEGORIA ============= */
 
-	promesa
-		.then((respuesta) => {
-			return respuesta.json();
-		})
-		.then((data) => {
-			categReporte = [...data];
-			mostrarSinReportes();
-
-			//return [...data];
-		})
-		.catch((error) => {
-			console.log("ERROR - Carga de Categorías en REPORTES: ", error);
+let buscarCategorias = async () => {
+	try {
+		let respuestaFetch = await fetch("http://localhost:8080/api_watch/listar", {
+			method: "GET",
+			headers: {
+				Accept: "application/json",
+				"Content-Type": "application/json; charset=utf-8",
+			},
 		});
-}
+		let categorias = await respuestaFetch.json();
+		return categorias;
+	} catch (error) {
+		console.log("ERROR - Buscar Categorías en Reportes: ", error); //para ver error
+	}
+};
 
 // ===================================================
-// Busca OPERACIONES de la base de datos, manda a filtrar y luego las muestra
-
-function buscarOperaciones() {
-	let promesa = fetch("http://localhost:8080/api_watch/listaroper", {
-		method: "GET",
-		headers: {
-			Accept: "application/json",
-			"Content-Type": "application/json; charset=utf-8",
-		},
-	});
-
-	promesa
-		.then((respuesta) => {
-			return respuesta.json();
-		})
-		.then((datosOper) => {
-			operaReporte = [...datosOper];
-			mostrarSinReportes();
-
-			//return [...datosOper];
-		})
-		.catch((error) => {
-			console.log("ERROR - Carga de operaciones en Reportes: ", error);
-		});
-}
+// Busca OPERACIONES de la DBF
+let buscarOperaciones = async () => {
+	try {
+		let respuestaFetch = await fetch(
+			"http://localhost:8080/api_watch/listaroper",
+			{
+				method: "GET",
+				headers: {
+					Accept: "application/json",
+					"Content-Type": "application/json; charset=utf-8",
+				},
+			}
+		);
+		let operaciones = await respuestaFetch.json();
+		return operaciones;
+	} catch (error) {
+		console.log("ERROR - Buscar Operaciones en Reportes: ", error); //para ver error
+	}
+};
 
 // ======================================================== //
 /* viene de SCRIPT.JS */
-function mostrarReportes() {
-	//buscarCategorias();
-	//buscarOperaciones();
-	console.log("bbbbbbbbbbbbbbbbbbbb");
+async function mostrarReportes() {
+
+ 	categReporte = await buscarCategorias();
+ 	operaReporte = await buscarOperaciones();
+	console.log(operaReporte);
+
 	if (operaReporte.length > 0 && categReporte.length > 0) {
 		mostrarConReportes();
 	} else {
-		console.log("sin");
 		mostrarSinReportes();
 	}
 }
