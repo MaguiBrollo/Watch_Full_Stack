@@ -712,10 +712,12 @@ body {
 }
 .balance__fila-desc {
   width: 60%;
+  overflow-wrap: break-word;
 }
 .balance__fila-cate {
   width: 40%;
   font-weight: bold;
+  overflow-wrap: break-word;
 }
 .balance__fila-fech {
   width: 34%;
@@ -803,7 +805,7 @@ body {
     height: 27px;
   }
   .balance__operacion-2filas-a {
-    width: 60%;
+    width: 68%;
   }
   .balance__operacion-2filas-b {
     width: 40%;

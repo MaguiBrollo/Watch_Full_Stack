@@ -60,6 +60,8 @@ let registrarCategoria = async (categoria) => {
 
 /* ============== LISTAR CATEGORIA ============= */
 function listarCategorias() {
+	const spinner = document.getElementById("spinner");
+	spinner.removeAttribute("hidden");
 	let respuestaFetch = fetch("http://localhost:8080/api_watch/listar", {
 		method: "GET",
 		headers: {
@@ -74,6 +76,7 @@ function listarCategorias() {
 		})
 		.then((data) => {
 			mostrarCategorias(data);
+			spinner.setAttribute("hidden", "");
 		})
 		.catch((error) => {
 			console.log("ERROR - LISTAR Categorías: ", error);
