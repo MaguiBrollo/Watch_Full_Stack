@@ -65,12 +65,13 @@
 		border: 2px solid var(--colSec);
 		border-radius: 5px;
 		margin-top: 10px;
+		margin-bottom: 20px;
 	}
 
 	&__tit-seccion {
 		@extend .montserrat-n-n; //fonts.scss
 		font-size: 1.5rem;
-		margin: 5px 15px 5px 5px;
+		margin: 15px 5px;
 	}
 	&__resumen {
 		@include flex-dir-al-jus(flex, column, x, x);
@@ -89,10 +90,11 @@
 		@include flex-dir-al-jus(flex, row, center, x);
 		width: 100%;
 	}
-	&__resumen-cont-desc {
+	&__resumen-cont-nom {
 		width: 50%;
 		text-align: center;
-		font-weight: bold;
+		//font-weight: bold;
+		overflow-wrap: break-word;
 	}
 	&__resumen-cont-impo {
 		width: 49%;
@@ -100,15 +102,23 @@
 	}
 
 	//total por categoria
+	&__list-cont-de-filas {
+		@include flex-dir-al-jus(flex, column, x, x);
+		max-height: 200px;
+		overflow-y: auto;
+		border-top: 2px solid var(--colSec);
+	}
 	&__list-cont {
 		@include flex-dir-al-jus(flex, row, center, x);
 		width: 99%;
 		padding: 4px;
 		border-top: 2px solid var(--colSec);
+		font-size: 0.8rem;
 	}
 
 	&__list-der {
 		width: 35%;
+		overflow-wrap: break-word;
 	}
 	&__list-izq-cont {
 		width: 65%;
@@ -135,7 +145,7 @@
 		&__resumen {
 			@include flex-dir-al-jus(flex, row, x, x);
 			width: 99%;
-			font-size: 1rem;
+			font-size: 0.9rem;
 		}
 		&__resumen-nombre {
 			width: 40%;
@@ -145,13 +155,13 @@
 		}
 		//total por categoria
 		&__list-cont {
-			width: 96%;
+			width: 100%;
 		}
 		&__list-der {
-			width: 40%;
+			width: 33%;
 		}
 		&__list-izq-cont {
-			width: 55%;
+			width: 67%;
 			@include flex-dir-al-jus(flex, row, x, x);
 		}
 		&__list-izq {

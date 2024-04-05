@@ -128,6 +128,10 @@ function totalesPorCat(totales) {
 			});
 		}
 	});
+
+	totales.sort((a, b) => {
+		return a.nombreCat.localeCompare(b.nombreCat);
+	});
 }
 
 /* ===================================================== */
@@ -135,7 +139,7 @@ function totalesPorCat(totales) {
 function totalesPorMes(totales) {
 	let arrayAnioMes = [];
 	operaReporte.forEach((oper) => {
-		const fechaOper = new Date(oper.fecha);
+		const fechaOper = new Date(`${oper.fechaOperacion}T00:00:00`);
 		const anio = fechaOper.getFullYear();
 		const mes = fechaOper.getMonth();
 
@@ -150,8 +154,9 @@ function totalesPorMes(totales) {
 	arrayAnioMes.forEach((anioMes) => {
 		const filtrarOperPorMes = operaReporte.filter(
 			(oper) =>
-				new Date(oper.fecha).getFullYear() === anioMes.anio &&
-				new Date(oper.fecha).getMonth() === anioMes.mes
+				new Date(`${oper.fechaOperacion}T00:00:00`).getFullYear() ===
+					anioMes.anio &&
+				new Date(`${oper.fechaOperacion}T00:00:00`).getMonth() === anioMes.mes
 		);
 
 		let gan = 0;
@@ -169,6 +174,26 @@ function totalesPorMes(totales) {
 				gasto: gas,
 				balance: gan - gas,
 			});
+		}
+	});
+	//ORDENAR
+	totales.sort((a, b) => {
+		if (a.anio > b.anio) {
+			return -1;
+		} else {
+			if (a.anio < b.anio) {
+				return 1;
+			} else {
+				if (a.mesNum > b.mesNum) {
+					return -1;
+				} else {
+					if (a.mesNum < b.mesNum) {
+						return 1;
+					} else {
+						return 0;
+					}
+				}
+			}
 		}
 	});
 }
@@ -196,7 +221,6 @@ const totales_por_mes = document.getElementById("totales-por-mes");
 
 /* ------------------------------------------------ */
 function mostrarSinReportes() {
-	console.log("pasó por sin rep");
 	cont_menu_reporte.classList.remove("ocultar");
 	cont_sin_reporte.classList.remove("ocultar");
 	cont_con_reporte.classList.add("ocultar");
@@ -205,7 +229,6 @@ function mostrarSinReportes() {
 /* ------------------------------------------------ */
 /* Mostrar CON REPORTES */
 function mostrarConReportes() {
-	console.log("pasó por CON rep");
 	cont_menu_reporte.classList.remove("ocultar");
 	cont_sin_reporte.classList.add("ocultar");
 	cont_con_reporte.classList.remove("ocultar");
@@ -216,7 +239,6 @@ function mostrarConReportes() {
 		nombreCategoria: "",
 		importeCategoria: 0,
 	};
-
 	CatMayorGananciaGasto("GANANCIA", mayor);
 	cat_may_gana_nom.innerHTML = `${mayor.nombreCategoria}`;
 	cat_may_gana_imp.innerHTML = `$${formatPesos(mayor.importeCategoria)}`;
@@ -265,10 +287,6 @@ function mostrarConReportes() {
 	/* Totales por Categoria  */
 	let totalesCat = [];
 	totalesPorCat(totalesCat);
-	totalesCat.sort((a, b) => {
-		return a.nombreCat.localeCompare(b.nombreCat);
-	});
-
 	totales_por_categoria.innerHTML = "";
 	totalesCat.forEach((totCat) => {
 		let x;
@@ -296,55 +314,25 @@ function mostrarConReportes() {
 	/* Totales por MESES  */
 	let totalesMes = [];
 	totalesPorMes(totalesMes);
-	totalesMes.sort((a, b) => {
-		if (a.anio > b.anio) {
-			return -1;
-		} else {
-			if (a.anio < b.anio) {
-				return 1;
-			} else {
-				if (a.mesNum > b.mesNum) {
-					return -1;
-				} else {
-					if (a.mesNum < b.mesNum) {
-						return 1;
-					} else {
-						return 0;
-					}
-				}
-			}
-		}
-	});
 
 	totales_por_mes.innerHTML = "";
 	totalesMes.forEach((totMes) => {
-		let x;
+		let tot_mes_balance;
 		if (totMes.balance > 0) {
-			x = `<div class="w-full sm:w-[33%] flex justify-end"> $${formatPesos(
+			tot_mes_balance = `<div class="reporte__list-izq"> $${formatPesos(
 				totMes.balance
 			)} </div>`;
 		} else {
-			x = `<div class="w-full sm:w-[33%] flex justify-end text-rojo dark:text-red-900">
+			tot_mes_balance = `<div class="reporte__list-izq rojo">
 			-$${formatPesos(Math.abs(totMes.balance))} </div>`;
 		}
 
-		totales_por_mes.innerHTML += `
-		<div class="w-full flex flex-row border-t-2 border-indigo-100 dark:border-gray-400" > 
-			  <div class="w-[35%] sm:w-[30%] md:w-[40%] ">
-							${totMes.mes}
-				</div>
-
-				<div class="w-[65%] sm:w-[70%] md:w-[60%] flex flex-col sm:flex-row">
-					<div class="w-full sm:w-[33%] flex justify-end">
-						$${formatPesos(totMes.ganancia)}
-					</div>
-
-					<div
-						class="w-full sm:w-[33%] flex justify-end text-rojo dark:text-red-900"
-					>
-						-$${formatPesos(totMes.gasto)}
-					</div> 
-					${x}
+		totales_por_mes.innerHTML += `<div class="reporte__list-cont" > 
+			  <div class="reporte__list-der">${totMes.mes}</div>
+				<div class="reporte__list-izq-cont">
+					<div class="reporte__list-izq">$${formatPesos(totMes.ganancia)}</div>
+					<div class="reporte__list-izq">-$${formatPesos(totMes.gasto)}</div> 
+					${tot_mes_balance}
 				</div> 
 		</div>`;
 	});
