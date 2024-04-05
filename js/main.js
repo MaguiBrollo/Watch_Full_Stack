@@ -1,4 +1,4 @@
-// Se usa en balance ---------
+// Se usa en balance y reporte ---------
 function formatPesos(num) {
 	return num.toLocaleString("es-ES", {
 		minimumFractionDigits: 2,
@@ -7,10 +7,10 @@ function formatPesos(num) {
 }
 //--------------------------------------
 
+/* ================== Menú  - y Menú Hambburguesa  ================ */
 /* Por motivos de que SASS no trabaja correctamente en poner y sacar
-la clase "ocultar", es que debo agregar esta función. 
-md=768
-*/
+la clase "ocultar", es que debo agregar esta función. md=768 */
+
 let md_px = getComputedStyle(document.documentElement).getPropertyValue("--md");
 
 window.visualViewport.addEventListener("resize", () => {
@@ -23,7 +23,6 @@ window.visualViewport.addEventListener("resize", () => {
 });
 //--------------------------------------------------------------------------
 
-/* ================== Menú  - y Menú Hambburguesa  ================ */
 const nav_header = document.getElementById("nav-header");
 const abrir = document.getElementById("abrir");
 const cerrar = document.getElementById("cerrar");
@@ -54,7 +53,7 @@ const menuReportes = document.getElementById("menu-reportes");
 const contenedor_menuInicio = document.getElementById("cont-menu-inicio");
 const contenedor_menuBalance = document.getElementById("cont-menu-balance");
 const contenedor_menuCategorias = document.getElementById("cont-categorias");
-const contenedor_menuReportes = document.getElementById("cont-menu-reportes");
+const contenedor_menuReportes = document.getElementById("cont-menu-reporte");
 
 function mostrar(mostrar) {
 	contenedor_menuInicio.classList.add("ocultar");
@@ -80,12 +79,13 @@ menuBalance.addEventListener("click", () => {
 menuCategorias.addEventListener("click", () => {
 	cerrarNav();
 	mostrar(contenedor_menuCategorias);
-	funcionesCategorias(); // ver categorias.js
+	funcionesCategorias(); // ver category.js
 });
 
 menuReportes.addEventListener("click", () => {
 	cerrarNav();
-	//
+	mostrar(contenedor_menuReportes);
+	mostrarReportes(); /* ver en report.js */
 });
 
 /* ------------------------------------------------------------------------------------------------ */

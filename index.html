@@ -230,7 +230,7 @@
 					<div class="balance__titulo">
 						<h2 class="balance__h2">Operaciones</h2>
 						<img
-							class="balance__img--pequeña img-js"
+							class="balance__img-pequenia img-js"
 							src="img/operaciones.svg"
 							alt="Imagen de operaciones"
 							aria-label="Imagen de Operaciones"
@@ -379,31 +379,38 @@
 					<div class="categoria__crud">
 						<div class="categoria__form">
 							<!-- <div class="div-form"> -->
-								<div class="categoria__form-input">
-									<input
-										type="text"
-										class="categoria__input-nom-cat"
-										id="categ-nombre"
-										placeholder="Nombre"
-										maxlength="20"
-										name="categ-nombre"
-									/>
-								</div>
+							<div class="categoria__form-input">
+								<input
+									type="text"
+									class="categoria__input-nom-cat"
+									id="categ-nombre"
+									placeholder="Nombre"
+									maxlength="20"
+									name="categ-nombre"
+								/>
+							</div>
 
-								<div class="categoria__btn-aeb">
-									<button class="categoria__btn categoria__btn--agr" id="categ-agregar">
-										<span class="material-symbols-outlined"> add_circle </span>
-									</button>
+							<div class="categoria__btn-aeb">
+								<button
+									class="categoria__btn categoria__btn--agr"
+									id="categ-agregar"
+								>
+									<span class="material-symbols-outlined"> add_circle </span>
+								</button>
 
-									<button class="categoria__btn categoria__btn--edi" id="categ-editar">
-										<span class="material-symbols-outlined">
-											check_circle
-										</span>
-									</button>
-									<button class="categoria__btn categoria__btn--bor" id="categ-cancelar">
-										<span class="material-symbols-outlined"> cancel</span>
-									</button>
-								</div>
+								<button
+									class="categoria__btn categoria__btn--edi"
+									id="categ-editar"
+								>
+									<span class="material-symbols-outlined"> check_circle </span>
+								</button>
+								<button
+									class="categoria__btn categoria__btn--bor"
+									id="categ-cancelar"
+								>
+									<span class="material-symbols-outlined"> cancel</span>
+								</button>
+							</div>
 							<!-- </div> -->
 						</div>
 						<div class="categoria__mns-input" id="mns-input-cat">
@@ -430,9 +437,154 @@
 
 			<!-- ==========================================  -->
 			<!-- ============= MENÚ REPORTES ==============  -->
-			<section class="reportes ocultar" id="cont-menu-reportes">
-				<div>
-					<p>Reportes</p>
+			<section class="reporte ocultar" id="cont-menu-reporte">
+				<div class="reporte_cont">
+					<div class="reporte__tit-img">
+						<h2 class="reporte__tit">Reportes</h2>
+						<img
+							class="reporte__img-pequenia img-js"
+							src="img/reportes.svg"
+							alt="Imagen de Reportes"
+							aria-label="Imagen de Reportes"
+						/>
+					</div>
+
+					<!--  =======================================   -->
+					<!-- Esta img se muestra cuando NO hay reportes-->
+					<div class="reporte__cont-sin-rep ocultar" id="cont-sin-reporte">
+						<img
+							class="reporte__img"
+							src="img/reportes.svg"
+							alt="Imagen de Reportes"
+							aria-label="Imagen de reportes"
+						/>
+						<h2 class="reporte__texto-sin-rep">
+							No se puede generar REPORTES por falta de "Operaciones". <br />
+							Diríjase al menú Balance y comience a registrar operaciones.
+						</h2>
+					</div>
+
+					<!--  =======================================   -->
+					<!-- Esta info se muestra cuando SI hay reportes-->
+					<div class="reporte__cont-con-rep ocultar" id="cont-con-reporte">
+						<!--            RESUMEN               -->
+						<div class="reporte__resumen-cont">
+							<h4 class="reporte__tit-seccion">Resumen</h4>
+							<!--  ============================   -->
+							<div class="reporte__resumen">
+								<div class="reporte__resumen-nombre">
+									Categoría con mayor ganancia:
+								</div>
+								<div class="reporte__resumen-cont-val">
+									<div class="reporte__resumen-cont-nom" id="cat-may-gana-nom">
+										xx
+									</div>
+									<div class="reporte__resumen-cont-impo" id="cat-may-gana-imp">
+										99
+									</div>
+								</div>
+							</div>
+
+							<!--  ============================   -->
+							<div class="reporte__resumen">
+								<div class="reporte__resumen-nombre">
+									Categoría con mayor gasto:
+								</div>
+								<div class="reporte__resumen-cont-val">
+									<div class="reporte__resumen-cont-nom" id="cat-may-gast-nom">
+										xx
+									</div>
+									<div
+										class="reporte__resumen-cont-impo rojo"
+										id="cat-may-gast-imp"
+									>
+										99
+									</div>
+								</div>
+							</div>
+
+							<!--  ============================   -->
+							<div class="reporte__resumen">
+								<div class="reporte__resumen-nombre">
+									Categoría con mayor balance:
+								</div>
+								<div class="reporte__resumen-cont-val">
+									<div class="reporte__resumen-cont-nom" id="cat-may-bala-nom">
+										xx
+									</div>
+									<div class="reporte__resumen-cont-impo" id="cat-may-bala-imp">
+										99
+									</div>
+								</div>
+							</div>
+
+							<!--  ============================   -->
+							<div class="reporte__resumen">
+								<div class="reporte__resumen-nombre">
+									Mes con mayor ganancia:
+								</div>
+								<div class="reporte__resumen-cont-val">
+									<div class="reporte__resumen-cont-nom" id="mes-may-gana-nom">
+										xx
+									</div>
+									<div class="reporte__resumen-cont-impo" id="mes-may-gana-imp">
+										99
+									</div>
+								</div>
+							</div>
+
+							<!--  ============================   -->
+							<div class="reporte__resumen">
+								<div class="reporte__resumen-nombre">Mes con mayor gasto:</div>
+								<div class="reporte__resumen-cont-val">
+									<div class="reporte__resumen-cont-nom" id="mes-may-gast-nom">
+										xx
+									</div>
+									<div
+										class="reporte__resumen-cont-impo rojo"
+										id="mes-may-gast-imp"
+									>
+										99
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!--  ==================================================   -->
+						<!--            total por categorías               -->
+						<div class="reporte__resumen-cont">
+							<h4 class="reporte__tit-seccion">Total por Categorías</h4>
+
+							<div class="reporte__list-cont">
+								<div class="reporte__list-der">CATEGORÍA</div>
+								<div class="reporte__list-izq-cont">
+									<div class="reporte__list-izq">Ganancia</div>
+									<div class="reporte__list-izq">Gasto</div>
+									<div class="reporte__list-izq">Balance</div>
+								</div>
+							</div>
+							<div class="reporte__list-cont-de-filas" id="totales-por-categoria">
+								<!-- se completa en el js -->
+							</div>
+						</div>
+
+						<!--  ==================================================   -->
+						<!--            total por MES               -->
+						<div class="reporte__resumen-cont">
+							<h4 class="reporte__tit-seccion">Total por Mes</h4>
+							<div class="reporte__list-cont">
+								<div class="reporte__list-der">AÑO - MES</div>
+								<div class="reporte__list-izq-cont">
+									<div class="reporte__list-izq">Ganancia</div>
+									<div class="reporte__list-izq">Gasto</div>
+									<div class="reporte__list-izq">Balance</div>
+								</div>
+							</div>
+							<div class="reporte__list-cont-de-filas" id="totales-por-mes">
+								<!-- se completa en el js -->
+							</div>
+						</div>
+					</div>
 				</div>
 			</section>
 		</main>
@@ -479,4 +631,5 @@
 	<script src="js/main.js"></script>
 	<script src="js/category.js"></script>
 	<script src="js/balance.js"></script>
+	<script src="js/report.js"></script>
 </html>

@@ -16,6 +16,8 @@
 	&__tit {
 		@extend .lora-i-n; //fonts.scss
 		font-size: 1.8rem;
+		font-weight: bold;
+		color: var(--colTituloSec);
 		width: 85%;
 		padding-left: 10px;
 	}
@@ -35,6 +37,7 @@
 		@include flex-dir-al-jus(flex, row, x, space-between);
 		padding: 5px;
 		border: 5px double var(--colSec);
+		border-radius: 5px;
 	}
 	&__form-input {
 		@include flex-dir-al-jus(flex, row, x, x);
@@ -86,6 +89,7 @@
 	&__lista {
 		width: 100%;
 		border: 5px double var(--colSec);
+		border-radius: 5px;
 		margin-top: 10px;
 		//margin-bottom: 30px;
 	}

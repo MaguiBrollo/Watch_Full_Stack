@@ -9,11 +9,12 @@ $lg: 1024; // => @media (min-width: 1024px) { ... }
 	/* Modo claro*/
 	--colPpal: #cddbff;
 	--colSec: #9aade5;
-	--colTer: #bfccf5;
+	--colTer:  #bfccf5;
 	--colHoverBtn: #f2f9ff;
 	--colFondoMain: rgb(232, 241, 255);
 	--colFuente: #111827; /*  gray 900*/
 	--colTituloPpal: #fcc656;
+	--colTituloSec : #3F5A9F;
 	--colVerde: rgb(34, 100, 34);
 	--colRojo: rgb(178, 59, 59);
 
@@ -34,6 +35,7 @@ $lg: 1024; // => @media (min-width: 1024px) { ... }
 	--colFondoMain: #9ca3af; /*grey  400 */
 	--colFuente: #f4f4f5; /*  gray 100*/
 	--colTituloPpal: #fcc656;
+	--colTituloSec : #1f2937;
 	--colVerde: rgb(20, 54, 20);
 	--colRojo: rgb(58, 20, 20);
 
