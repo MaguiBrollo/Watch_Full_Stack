@@ -118,6 +118,7 @@
 	&__operacion {
 		width: 100%;
 		border: 5px double var(--colSec);
+		border-radius: 5px;
 	}
 	&__operacion-encabezado {
 		@include flex-dir-al-jus(flex, column, center, x);

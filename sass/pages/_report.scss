@@ -21,11 +21,13 @@
 	&__tit {
 		@extend .lora-i-n; //fonts.scss
 		font-size: 1.8rem;
+		font-weight: bold;
+		color: var(--colTituloSec);
 		width: 85%;
 		padding-left: 10px;
 	}
 	&__img-pequenia {
-		width: 10%;
+		width: 15%;
 		margin-bottom: 5px;
 	}
 
@@ -51,7 +53,7 @@
 
 	// CON reportes
 	&__cont-con-rep {
-		@include flex-dir-al-jus(flex, column, x, x);
+		@include flex-dir-al-jus(flex, column, center, x);
 		&.ocultar {
 			display: none;
 		}
@@ -60,33 +62,62 @@
 	&__resumen-cont {
 		width: 100%;
 		@include flex-dir-al-jus(flex, column, x, x);
-		border: 5px solid var(--colSec);
+		border: 2px solid var(--colSec);
+		border-radius: 5px;
+		margin-top: 10px;
 	}
 
 	&__tit-seccion {
 		@extend .montserrat-n-n; //fonts.scss
-		margin: 5px;
+		font-size: 1.5rem;
+		margin: 5px 15px 5px 5px;
 	}
-	&__resumen-may-gan {
+	&__resumen {
 		@include flex-dir-al-jus(flex, column, x, x);
-		width: 96%;
-		margin: 3px;
+		width: 98%;
+		border-top: 2px solid var(--colSec);
+		padding: 8px 4px;
+		margin: 0px 3px;
+		font-size: 0.8rem;
 	}
 
 	&__resumen-nombre {
 		width: 100%;
+		font-style: italic;
 	}
 	&__resumen-cont-val {
-		@include flex-dir-al-jus(flex, row, x, x);
+		@include flex-dir-al-jus(flex, row, center, x);
 		width: 100%;
 	}
-   &__resumen-cont-1{
-      width: 50%;
-      //text balance
-      @include flex-dir-al-jus(flex, x, x, center);
-      text-align: center;
-   }
+	&__resumen-cont-desc {
+		width: 50%;
+		text-align: center;
+		font-weight: bold;
+	}
+	&__resumen-cont-impo {
+		width: 49%;
+		text-align: end;
+	}
 
+	//total por categoria
+	&__list-cont {
+		@include flex-dir-al-jus(flex, row, center, x);
+		width: 99%;
+		padding: 4px;
+		border-top: 2px solid var(--colSec);
+	}
+
+	&__list-der {
+		width: 35%;
+	}
+	&__list-izq-cont {
+		width: 65%;
+		@include flex-dir-al-jus(flex, column, x, x);
+	}
+	&__list-izq {
+		width: 100%;
+		text-align: end;
+	}
 
 	//--------------------------------------------
 	//$md: "768px" ver en varibales.scss;
@@ -101,15 +132,31 @@
 		}
 
 		//con reportes
-		&__resumen-may-gan {
+		&__resumen {
 			@include flex-dir-al-jus(flex, row, x, x);
-			width: 92%;
+			width: 99%;
+			font-size: 1rem;
 		}
 		&__resumen-nombre {
 			width: 40%;
 		}
 		&__resumen-cont-val {
 			width: 59%;
+		}
+		//total por categoria
+		&__list-cont {
+			width: 96%;
+		}
+		&__list-der {
+			width: 40%;
+		}
+		&__list-izq-cont {
+			width: 55%;
+			@include flex-dir-al-jus(flex, row, x, x);
+		}
+		&__list-izq {
+			width: 33%;
+			text-align: end;
 		}
 	}
 }

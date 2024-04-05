@@ -24,7 +24,7 @@ const meses = [
 function CatMayorGananciaGasto(tipo, mayor) {
 	categReporte.forEach((cat) => {
 		const filtrarOperPorCat = operaReporte.filter(
-			(oper) => oper.tipo === tipo && cat.id === oper.categoria
+			(oper) => oper.tipo === tipo && cat.id === oper.categoria.id
 		);
 
 		let totalCat = 0;
@@ -45,7 +45,7 @@ function CatMayorGananciaGasto(tipo, mayor) {
 function CatMayorBalance(mayor) {
 	categReporte.forEach((cat) => {
 		const filtrarOperPorCat = operaReporte.filter(
-			(oper) => cat.id === oper.categoria
+			(oper) => cat.id === oper.categoria.id
 		);
 
 		let totalCat = 0;
@@ -67,18 +67,18 @@ function CatMayorBalance(mayor) {
 /* "MES" con Mayor GANANCIA y con Mayor GASTO */
 function MesMayorGananciaGasto(tipo, mayor) {
 	let arrayAnioMes = [];
+
 	operaReporte.forEach((oper) => {
-		const fechaOper = new Date(oper.fecha);
+		const fechaOper = new Date(`${oper.fechaOperacion}T00:00:00`);
 		const anio = fechaOper.getFullYear();
 		const mes = fechaOper.getMonth();
-
 		if (
 			oper.tipo === tipo &&
 			!arrayAnioMes.some((e) => anio === e.anio && mes === e.mes)
 		) {
 			arrayAnioMes.push({
-				anio: fechaOper.getFullYear(),
-				mes: fechaOper.getMonth(),
+				anio: anio,
+				mes: mes,
 			});
 		}
 	});
@@ -87,8 +87,9 @@ function MesMayorGananciaGasto(tipo, mayor) {
 		const filtrarOperPorMes = operaReporte.filter(
 			(oper) =>
 				oper.tipo === tipo &&
-				new Date(oper.fecha).getFullYear() === anioMes.anio &&
-				new Date(oper.fecha).getMonth() === anioMes.mes
+				new Date(`${oper.fechaOperacion}T00:00:00`).getFullYear() ===
+					anioMes.anio &&
+				new Date(`${oper.fechaOperacion}T00:00:00`).getMonth() === anioMes.mes
 		);
 
 		let totalCat = 0;
@@ -109,7 +110,7 @@ function MesMayorGananciaGasto(tipo, mayor) {
 function totalesPorCat(totales) {
 	categReporte.forEach((cat) => {
 		const filtrarOperPorCat = operaReporte.filter(
-			(oper) => cat.id === oper.categoria
+			(oper) => cat.id === oper.categoria.id
 		);
 
 		let gan = 0;
@@ -169,14 +170,6 @@ function totalesPorMes(totales) {
 				balance: gan - gas,
 			});
 		}
-	});
-}
-/* ===================================================== */
-
-function formatPesos(num) {
-	return num.toLocaleString("es-ES", {
-		minimumFractionDigits: 2,
-		maximumFractionDigits: 2,
 	});
 }
 
@@ -280,30 +273,20 @@ function mostrarConReportes() {
 	totalesCat.forEach((totCat) => {
 		let x;
 		if (totCat.balance > 0) {
-			x = `<div class="w-full sm:w-[33%] flex justify-end"> $${formatPesos(
+			x = `<div class="reporte__list-izq"> $${formatPesos(
 				totCat.balance
 			)} </div>`;
 		} else {
-			x = `<div class="w-full sm:w-[33%] flex justify-end text-rojo dark:text-red-900">
+			x = `<div class="reporte__list-izq rojo">
 			-$${formatPesos(Math.abs(totCat.balance))} </div>`;
 		}
 
 		totales_por_categoria.innerHTML += `
-		<div class="w-full flex flex-row border-t-2 border-indigo-100 dark:border-gray-400" > 
-			  <div class="w-[35%] sm:w-[30%] md:w-[40%] ">
-							${totCat.nombreCat}
-				</div>
-
-				<div class="w-[65%] sm:w-[70%] md:w-[60%] flex flex-col sm:flex-row">
-					<div class="w-full sm:w-[33%] flex justify-end">
-						$${formatPesos(totCat.ganancia)}
-					</div>
-
-					<div
-						class="w-full sm:w-[33%] flex justify-end text-rojo dark:text-red-900"
-					>
-						-$${formatPesos(totCat.gasto)}
-					</div> 
+		<div class="reporte__list-cont" > 
+			  <div class="reporte__list-der">${totCat.nombreCat}</div>
+				<div class="reporte__list-izq-cont">
+					<div class="reporte__list-izq">$${formatPesos(totCat.ganancia)}</div>
+					<div class="reporte__list-izq">-$${formatPesos(totCat.gasto)}</div> 
 					${x}
 				</div> 
 		</div>`;
@@ -411,10 +394,8 @@ let buscarOperaciones = async () => {
 // ======================================================== //
 /* viene de SCRIPT.JS */
 async function mostrarReportes() {
-
- 	categReporte = await buscarCategorias();
- 	operaReporte = await buscarOperaciones();
-	console.log(operaReporte);
+	categReporte = await buscarCategorias();
+	operaReporte = await buscarOperaciones();
 
 	if (operaReporte.length > 0 && categReporte.length > 0) {
 		mostrarConReportes();
