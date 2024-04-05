@@ -382,8 +382,14 @@ let buscarOperaciones = async () => {
 // ======================================================== //
 /* viene de SCRIPT.JS */
 async function mostrarReportes() {
+	const spinner = document.getElementById("spinner");
+
+	spinner.removeAttribute("hidden");
+
 	categReporte = await buscarCategorias();
 	operaReporte = await buscarOperaciones();
+
+	spinner.setAttribute("hidden", "");
 
 	if (operaReporte.length > 0 && categReporte.length > 0) {
 		mostrarConReportes();
