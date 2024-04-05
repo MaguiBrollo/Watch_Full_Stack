@@ -132,6 +132,9 @@ function mostrarDatosEncabezadoBalance(sumaGana, sumaGasto) {
 // Busca OPERACIONES de la base de datos, manda a filtrar y luego las muestra
 
 function cargarOperaciones() {
+	const spinner = document.getElementById("spinner");
+	spinner.removeAttribute("hidden");
+
 	let promesa = fetch("http://localhost:8080/api_watch/listaroper", {
 		method: "GET",
 		headers: {
@@ -146,6 +149,9 @@ function cargarOperaciones() {
 		})
 		.then((datosOper) => {
 			operListado = [...datosOper];
+			
+			spinner.setAttribute("hidden", ""); 
+
 			filtrarOperaciones();
 		})
 		.catch((error) => {

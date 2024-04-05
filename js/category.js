@@ -62,6 +62,7 @@ let registrarCategoria = async (categoria) => {
 function listarCategorias() {
 	const spinner = document.getElementById("spinner");
 	spinner.removeAttribute("hidden");
+	
 	let respuestaFetch = fetch("http://localhost:8080/api_watch/listar", {
 		method: "GET",
 		headers: {
