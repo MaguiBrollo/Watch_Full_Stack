@@ -130,10 +130,10 @@ function mostrarDatosEncabezadoBalance(sumaGana, sumaGasto) {
 
 // ===================================================
 // Busca OPERACIONES de la base de datos, manda a filtrar y luego las muestra
+const spinner_bal = document.getElementById("spinner-bal");
 
 function cargarOperaciones() {
-	const spinner = document.getElementById("spinner");
-	spinner.removeAttribute("hidden");
+	spinner_bal.removeAttribute("hidden");
 
 	let promesa = fetch("http://localhost:8080/api_watch/listaroper", {
 		method: "GET",
@@ -149,13 +149,11 @@ function cargarOperaciones() {
 		})
 		.then((datosOper) => {
 			operListado = [...datosOper];
-			
-			spinner.setAttribute("hidden", ""); 
-
-			filtrarOperaciones();
+				spinner_bal.setAttribute("hidden", "");
+				filtrarOperaciones();
 		})
 		.catch((error) => {
-			console.log("ERROR - Listar OPERACIONES: ", error);
+			console.log("ERROR - Listar OPERACIONES en Balance: ", error);
 		});
 }
 
@@ -317,7 +315,7 @@ function cargarCategorias() {
 			mostrarCategoriasOper(data);
 		})
 		.catch((error) => {
-			console.log("ERROR - Carga de Categorías en Operaciones: ", error);
+			console.log("ERROR - Carga de CATEGORÍAS en Operaciones: ", error);
 		});
 }
 
