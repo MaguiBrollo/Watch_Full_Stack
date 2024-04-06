@@ -59,7 +59,10 @@ let registrarCategoria = async (categoria) => {
 };
 
 /* ============== LISTAR CATEGORIA ============= */
+const spinner_cat = document.getElementById("spinner-cat");
 function listarCategorias() {
+	spinner_cat.removeAttribute("hidden");
+
 	let respuestaFetch = fetch("http://localhost:8080/api_watch/listar", {
 		method: "GET",
 		headers: {
@@ -73,6 +76,7 @@ function listarCategorias() {
 			return respuesta.json();
 		})
 		.then((data) => {
+			spinner_cat.setAttribute("hidden", "");
 			mostrarCategorias(data);
 		})
 		.catch((error) => {

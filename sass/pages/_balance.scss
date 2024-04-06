@@ -135,10 +135,12 @@
 	}
 	&__fila-desc {
 		width: 60%;
+		overflow-wrap: break-word;
 	}
 	&__fila-cate {
 		width: 40%;
 		font-weight: bold;
+		overflow-wrap: break-word;
 	}
 
 	&__fila-fech {
@@ -235,7 +237,7 @@
 			height: 27px;
 		}
 		&__operacion-2filas-a {
-			width: 60%;
+			width: 68%;
 		}
 		&__operacion-2filas-b {
 			width: 40%;

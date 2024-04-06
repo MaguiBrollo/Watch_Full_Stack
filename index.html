@@ -244,8 +244,11 @@
 							Nueva Operación
 						</button>
 					</div>
+					<!-- para el spinner -->
+					<div hidden id="spinner-bal"></div>
+
 					<!-- contenedor SIN OPERACIONES -->
-					<div class="balance__cont-sin-oper" id="cont-sin-oper">
+					<div class="balance__cont-sin-oper ocultar" id="cont-sin-oper">
 						<img
 							class="balance__img img_js"
 							src="img/operaciones.svg"
@@ -423,6 +426,8 @@
 							</div>
 
 							<div class="categoria__listado" id="categ-tabla-listado">
+								<!-- para el spinner -->
+								<div hidden id="spinner-cat"></div>
 								<!-- Se completa con los datos de la DBF. Ver categorias.js-->
 								<!-- <div class="categoria__listado-fila">
 										div nombre 
@@ -448,7 +453,8 @@
 							aria-label="Imagen de Reportes"
 						/>
 					</div>
-
+					<!-- para el spinner -->
+					<div hidden id="spinner-rep"></div>
 					<!--  =======================================   -->
 					<!-- Esta img se muestra cuando NO hay reportes-->
 					<div class="reporte__cont-sin-rep ocultar" id="cont-sin-reporte">
@@ -563,7 +569,10 @@
 									<div class="reporte__list-izq">Balance</div>
 								</div>
 							</div>
-							<div class="reporte__list-cont-de-filas" id="totales-por-categoria">
+							<div
+								class="reporte__list-cont-de-filas"
+								id="totales-por-categoria"
+							>
 								<!-- se completa en el js -->
 							</div>
 						</div>
