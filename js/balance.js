@@ -1,7 +1,34 @@
 //++++++++++++++++++++++++++++++++++++++++++++++++++++//
-//            Variables Globales
+// Variables Globales
 let operListado = []; //Aquí se guarda Operaciones desde la DBF
 let operFiltros = []; //copia de Operaciones, para FILTROS
+
+//++++++++++++++++++++++++++++++++++++++++++++++++++++//
+// Funciones generales
+function formatFecha(f) {
+	let fc = new Date(f);
+	let ff;
+	fc.getDate() < 10
+		? (ff = "0" + fc.getDate() + "-")
+		: (ff = fc.getDate() + "-");
+	fc.getMonth() + 1 < 10
+		? (ff += "0" + (fc.getMonth() + 1) + "-")
+		: (ff += fc.getMonth() + 1 + "-");
+	ff += fc.getFullYear();
+	return ff;
+}
+//-----------------------------
+function posNeg(tipo, monto) {
+	let pN;
+	if (tipo === "GANANCIA") {
+		pN = `<div class="balance__fila-mont verde">$${formatPesos(monto)}</div>`;
+	} else {
+		pN = `<div class="balance__fila-mont rojo" >-$${formatPesos(
+			Math.abs(monto)
+		)}</div>`;
+	}
+	return pN;
+}
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++//
 //            BALANCE  y FILTROS
@@ -34,7 +61,7 @@ function inicializarFechaInput(id_del_input, que_hago) {
 function inicializarFechas() {
 	inicializarFechaInput("filtro-fecha-desde", "restarMes");
 	inicializarFechaInput("filtro-fecha-hasta", "noRestarMes");
-	//inicializarFechaInput("fecha-oper-input", "noRestarMes");
+	inicializarFechaInput("fecha-oper-input", "noRestarMes");
 }
 
 // ===================================================
@@ -135,7 +162,7 @@ const spinner_bal = document.getElementById("spinner-bal");
 function cargarOperaciones() {
 	spinner_bal.removeAttribute("hidden");
 
-	let promesa = fetch("http://localhost:8080/api_watch/listaroper", {
+	let promesa = fetch("http://localhost:8080/api_watch/oper/listar", {
 		method: "GET",
 		headers: {
 			Accept: "application/json",
@@ -149,8 +176,8 @@ function cargarOperaciones() {
 		})
 		.then((datosOper) => {
 			operListado = [...datosOper];
-				spinner_bal.setAttribute("hidden", "");
-				filtrarOperaciones();
+			spinner_bal.setAttribute("hidden", "");
+			filtrarOperaciones();
 		})
 		.catch((error) => {
 			console.log("ERROR - Listar OPERACIONES en Balance: ", error);
@@ -252,7 +279,7 @@ function mostrarOperaciones(listOper) {
 						<span onClick="editarOper(${
 							oper.id
 						})" class="material-symbols-outlined balance__fila-btn--edi"> edit </span>
-						<span onClick="borrarOper(${
+						<span onClick="borrarOperacion(${
 							oper.id
 						})" class="material-symbols-outlined balance__fila-btn--del"> delete </span>
 					</div>
@@ -266,40 +293,10 @@ function mostrarOperaciones(listOper) {
 	}
 }
 
-//-----------------------------
-function formatFecha(f) {
-	let fc = new Date(f);
-	let ff;
-	fc.getDate() < 10
-		? (ff = "0" + fc.getDate() + "-")
-		: (ff = fc.getDate() + "-");
-	fc.getMonth() + 1 < 10
-		? (ff += "0" + (fc.getMonth() + 1) + "-")
-		: (ff += fc.getMonth() + 1 + "-");
-	ff += fc.getFullYear();
-	return ff;
-}
-//-----------------------------
-function posNeg(tipo, monto) {
-	let pN;
-	if (tipo === "GANANCIA") {
-		pN = `<div class="balance__fila-mont verde">$${formatPesos(monto)}</div>`;
-	} else {
-		pN = `<div class="balance__fila-mont rojo" >-$${formatPesos(
-			Math.abs(monto)
-		)}</div>`;
-	}
-	return pN;
-}
-
-//++++++++++++++++++++++++++++++++++++++++++++++++++++//
-//      OPERACIONES nueva, editar, borrar
-//++++++++++++++++++++++++++++++++++++++++++++++++++++//
-
 // ===================================================
 // Busca categorías de la base de datos, luego las muestra
 function cargarCategorias() {
-	let promesa = fetch("http://localhost:8080/api_watch/listar", {
+	let promesa = fetch("http://localhost:8080/api_watch/cat/listar", {
 		method: "GET",
 		headers: {
 			Accept: "application/json",
@@ -322,8 +319,9 @@ function cargarCategorias() {
 //------------------------------------
 const categoria_oper_select = document.getElementById("categoria-oper-select");
 const filtro_categoria = document.getElementById("filtro-categoria");
+
 function mostrarCategoriasOper(listCat) {
-	//mostrar en Filtros
+	//Mostrar CATEGORÍA en Filtros
 	filtro_categoria.innerHTML = `<option value="TODAS">TODAS</option>`;
 	if (listCat.length === 0) {
 		filtro_categoria.innerHTML += `<option value=0>Sin Categorías</option>`;
@@ -334,7 +332,7 @@ function mostrarCategoriasOper(listCat) {
 		}
 	}
 
-	//Mostrar en Nueva Operación
+	//Mostrar CATEGORIA en Nueva Operación
 	categoria_oper_select.innerHTML = "";
 	if (listCat.length === 0) {
 		categoria_oper_select.innerHTML += `<option value=0>Sin Categorías</option>`;
@@ -346,34 +344,93 @@ function mostrarCategoriasOper(listCat) {
 	}
 }
 
-// ===================================================
-// Muestra Nueva Operación
-const btn_nueva_oper = document.getElementById("btn-nueva-oper");
-const cont_nueva_oper = document.getElementById("cont-nueva-oper");
+//++++++++++++++++++++++++++++++++++++++++++++++++++++//
+//      OPERACIONES nueva, editar, borrar
+//++++++++++++++++++++++++++++++++++++++++++++++++++++//
 
-btn_nueva_oper.addEventListener("click", () => {
+/* ============== NUEVA OPERACIÓN ============= */
+let operaciones = {}; //objeto vacío para agregar o editar.
+let idOper_paraEditar;
+
+//Muestra ventana de  Nueva operación
+$("#btn-nueva-oper").addEventListener("click", () => {
 	contenedor_menuBalance.classList.add("ocultar"); //viene de main.js
-	cont_nueva_oper.classList.remove("ocultar");
+	$("#cont-nueva-oper").classList.remove("ocultar");
 });
 
-const btn_agregar_oper = document.getElementById("btn-agregar-oper");
-const btn_cancelar_oper = document.getElementById("btn-cancelar-oper");
-
-btn_agregar_oper.addEventListener("click", () => {
+//Cancela Nueva Operación.
+$("#btn-cancelar-oper").addEventListener("click", () => {
 	contenedor_menuBalance.classList.remove("ocultar"); //viene de main.js
-	cont_nueva_oper.classList.add("ocultar");
+	$("#cont-nueva-oper").classList.add("ocultar");
 });
 
-btn_cancelar_oper.addEventListener("click", () => {
+/* ============== ALTA OPERACION ============= */
+//Arma un objeto para enviar a registrar
+$("#btn-agregar-oper").addEventListener("click", () => {
 	contenedor_menuBalance.classList.remove("ocultar"); //viene de main.js
-	cont_nueva_oper.classList.add("ocultar");
+	$("#cont-nueva-oper").classList.add("ocultar");
+
+	operaciones = {};
+	operaciones.descripcion = $("#descripcion-oper-input").value.toUpperCase();
+	operaciones.monto = parseFloat(`${$("#monto-oper-input").value}`);
+	operaciones.tipo = $("#tipo-oper-select").value;
+
+	operaciones.categoria = {
+		id: parseInt(`${$("#categoria-oper-select").value}`),
+		nombre: "",
+	};
+	operaciones.fechaOperacion = $("#fecha-oper-input").value;
+
+	registrarOperaciones(operaciones); //manda a la DBF
 });
+
+//Guarda datos de Nueva operación en la DBF
+let registrarOperaciones = async (operaciones) => {
+	try {
+		let peticion = await fetch("http://localhost:8080/api_watch/oper/crear", {
+			method: "POST",
+			headers: {
+				Accept: "application/json",
+				"Content-Type": "application/json; charset=utf-8",
+			},
+			body: JSON.stringify(operaciones),
+		});
+	} catch (error) {
+		console.log("ERROR - CREAR Operación: ", error);
+	}
+	cargarOperaciones(); //actualizar listado
+};
+
+/* ============== BAJA OPERACION ============= */
+let borrarOperacion = async (idOper) => {
+	try {
+		const peticion = await fetch(
+			"http://localhost:8080/api_watch/oper/" + idOper,
+			{
+				method: "DELETE",
+				headers: {
+					Accept: "application/json",
+					"Content-Type": "application/json; charset=utf-8",
+				},
+			}
+		);
+	} catch (error) {
+		console.log("ERROR - ELIMINAR Operacion: ", error);
+	}
+	cargarOperaciones(); //actualizar listado
+};
 
 // ======================================================== //
-// Funciones que deben ejecutarse al cargar menú Balance
-//(desde main.js)
+// Funciones que deben ejecutarse al cargar menú Balance (desde main.js)
 function funcionesBalance() {
 	inicializarFechas();
 	cargarCategorias();
 	cargarOperaciones();
 }
+
+//=============================================
+// Función:
+// const $ = (selector) => document.querySelector(selector);
+//
+// Se usa en TODOS los js, en lugar de: "const btn_nueva_oper = document.getElementById("btn-nueva-oper");"
+//=============================================

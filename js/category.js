@@ -44,7 +44,7 @@ categ_agregar.addEventListener("click", () => {
 // Agrega una categoría en la DBF
 let registrarCategoria = async (categoria) => {
 	try {
-		let peticion = await fetch("http://localhost:8080/api_watch/crear", {
+		let peticion = await fetch("http://localhost:8080/api_watch/cat/crear", {
 			method: "POST",
 			headers: {
 				Accept: "application/json",
@@ -63,7 +63,7 @@ const spinner_cat = document.getElementById("spinner-cat");
 function listarCategorias() {
 	spinner_cat.removeAttribute("hidden");
 
-	let respuestaFetch = fetch("http://localhost:8080/api_watch/listar", {
+	let respuestaFetch = fetch("http://localhost:8080/api_watch/cat/listar", {
 		method: "GET",
 		headers: {
 			Accept: "application/json",
@@ -109,13 +109,16 @@ function mostrarCategorias(listCat) {
 /* ============== BORRAR CATEGORIA ============= */
 let borrarCategoria = async (idCat) => {
 	try {
-		const peticion = await fetch("http://localhost:8080/api_watch/" + idCat, {
-			method: "DELETE",
-			headers: {
-				Accept: "application/json",
-				"Content-Type": "application/json; charset=utf-8",
-			},
-		});
+		const peticion = await fetch(
+			"http://localhost:8080/api_watch/cat/" + idCat,
+			{
+				method: "DELETE",
+				headers: {
+					Accept: "application/json",
+					"Content-Type": "application/json; charset=utf-8",
+				},
+			}
+		);
 	} catch (error) {
 		console.log("ERROR - ELIMINAR Categoría: ", error); //para ver error
 	}
@@ -127,7 +130,7 @@ let borrarCategoria = async (idCat) => {
 function editarCategoria(idCat) {
 	idCat_paraEditar = idCat;
 
-	let respuestaFetch = fetch("http://localhost:8080/api_watch/" + idCat, {
+	let respuestaFetch = fetch("http://localhost:8080/api_watch/cat/" + idCat, {
 		method: "GET",
 		headers: {
 			Accept: "application/json",
@@ -169,7 +172,7 @@ categ_editar.addEventListener("click", () => {
 //4- Guarda la categoría editada
 let guardarEditarCategoria = async (id, categoria) => {
 	try {
-		let peticion = await fetch("http://localhost:8080/api_watch/" + id, {
+		let peticion = await fetch("http://localhost:8080/api_watch/cat/" + id, {
 			method: "PUT",
 			headers: {
 				Accept: "application/json",

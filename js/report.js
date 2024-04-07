@@ -344,13 +344,16 @@ function mostrarConReportes() {
 
 let buscarCategorias = async () => {
 	try {
-		let respuestaFetch = await fetch("http://localhost:8080/api_watch/listar", {
-			method: "GET",
-			headers: {
-				Accept: "application/json",
-				"Content-Type": "application/json; charset=utf-8",
-			},
-		});
+		let respuestaFetch = await fetch(
+			"http://localhost:8080/api_watch/cat/listar",
+			{
+				method: "GET",
+				headers: {
+					Accept: "application/json",
+					"Content-Type": "application/json; charset=utf-8",
+				},
+			}
+		);
 		let categorias = await respuestaFetch.json();
 		return categorias;
 	} catch (error) {
@@ -363,7 +366,7 @@ let buscarCategorias = async () => {
 let buscarOperaciones = async () => {
 	try {
 		let respuestaFetch = await fetch(
-			"http://localhost:8080/api_watch/listaroper",
+			"http://localhost:8080/api_watch/oper/listar",
 			{
 				method: "GET",
 				headers: {
