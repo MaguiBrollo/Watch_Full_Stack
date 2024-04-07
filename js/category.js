@@ -53,7 +53,7 @@ let registrarCategoria = async (categoria) => {
 			body: JSON.stringify(categoria),
 		});
 	} catch (error) {
-		console.log("ERROR - CREAR categoría: ", error);
+		console.log("ERROR - Alta de categoría: ", error);
 	}
 	listarCategorias(); //actualizar listado
 };
@@ -80,7 +80,7 @@ function listarCategorias() {
 			mostrarCategorias(data);
 		})
 		.catch((error) => {
-			console.log("ERROR - LISTAR Categorías: ", error);
+			console.log("ERROR - Listar categorías: ", error);
 		});
 }
 
@@ -120,7 +120,7 @@ let borrarCategoria = async (idCat) => {
 			}
 		);
 	} catch (error) {
-		console.log("ERROR - ELIMINAR Categoría: ", error); //para ver error
+		console.log("ERROR - Borrar una categoría: ", error); 
 	}
 	listarCategorias();
 };
@@ -146,7 +146,7 @@ function editarCategoria(idCat) {
 			mostrarCatParaEditar(data);
 		})
 		.catch((error) => {
-			console.log("ERROR - Buscar una Categorías: ", error);
+			console.log("ERROR - Buscar una categoría: ", error);
 		});
 }
 // 2-Mostrar
@@ -181,7 +181,7 @@ let guardarEditarCategoria = async (id, categoria) => {
 			body: JSON.stringify(categoria),
 		});
 	} catch (error) {
-		console.log("ERROR - Guardar Editar categoría: ", error); //para ver error
+		console.log("ERROR - Guardar una categoría editada: ", error); 
 	}
 	listarCategorias(); //actualizar listado
 };

@@ -290,8 +290,8 @@
 			<!-- contenedor NUEVAS OPERACIONES -->
 			<section>
 				<div class="nueva-oper ocultar" id="cont-nueva-oper">
-					<div class="nueva-oper__titulo" id="tit-nueva-op">
-						<h2 class="balance__h2">Nueva Operación</h2>
+					<div class="nueva-oper__titulo" >
+						<h2 class="balance__h2" id="tit-nueva-op">Nueva Operación</h2>
 						<img
 							class="nueva-oper__img img-js"
 							src="img/operaciones.svg"
@@ -350,13 +350,19 @@
 
 						<div class="nueva-oper__botones">
 							<button
-								class="nueva-oper__btn nueva-oper__btn--agr nueva-oper__btn--agr"
-								id="btn-agregar-oper"
-							>
+								class="nueva-oper__btn nueva-oper__btn--agr"
+								id="btn-agregar-oper">
 								<span class="material-symbols-outlined"> add_circle </span>
 							</button>
+
 							<button
-								class="nueva-oper__btn nueva-oper__btn--del"
+									class="nueva-oper__btn nueva-oper__btn--edi"
+									id="btn-editar-oper"								>
+									<span class="material-symbols-outlined"> check_circle </span>
+								</button>
+
+							<button
+								class="nueva-oper__btn nueva-oper__btn--can"
 								id="btn-cancelar-oper"
 							>
 								<span class="material-symbols-outlined"> cancel</span>
@@ -393,24 +399,22 @@
 								/>
 							</div>
 
-							<div class="categoria__btn-aeb">
+							<div class="categoria__btn-aec">
 								<button
 									class="categoria__btn categoria__btn--agr"
-									id="categ-agregar"
-								>
+									id="categ-agregar">
 									<span class="material-symbols-outlined"> add_circle </span>
 								</button>
 
 								<button
 									class="categoria__btn categoria__btn--edi"
-									id="categ-editar"
-								>
+									id="categ-editar"								>
 									<span class="material-symbols-outlined"> check_circle </span>
 								</button>
+
 								<button
-									class="categoria__btn categoria__btn--bor"
-									id="categ-cancelar"
-								>
+									class="categoria__btn categoria__btn--can"
+									id="categ-cancelar">
 									<span class="material-symbols-outlined"> cancel</span>
 								</button>
 							</div>

@@ -6,7 +6,7 @@ let operFiltros = []; //copia de Operaciones, para FILTROS
 //++++++++++++++++++++++++++++++++++++++++++++++++++++//
 // Funciones generales
 function formatFecha(f) {
-	let fc = new Date(f);
+	let fc = new Date(`${f}T00:00:00`);
 	let ff;
 	fc.getDate() < 10
 		? (ff = "0" + fc.getDate() + "-")
@@ -180,7 +180,7 @@ function cargarOperaciones() {
 			filtrarOperaciones();
 		})
 		.catch((error) => {
-			console.log("ERROR - Listar OPERACIONES en Balance: ", error);
+			console.log("ERROR - Listar operaciones en balance: ", error);
 		});
 }
 
@@ -276,12 +276,12 @@ function mostrarOperaciones(listOper) {
 					<div class="balance__fila-fech">${formatFecha(oper.fechaOperacion)}</div>
 					${posNeg(oper.tipo, oper.monto)}
 					<div class="balance__fila-btn">
-						<span onClick="editarOper(${
-							oper.id
-						})" class="material-symbols-outlined balance__fila-btn--edi"> edit </span>
-						<span onClick="borrarOperacion(${
-							oper.id
-						})" class="material-symbols-outlined balance__fila-btn--del"> delete </span>
+						<span onClick="editarOperacion(${oper.id})" 
+						  class="material-symbols-outlined balance__fila-btn--edi"> edit 
+						</span>
+						<span onClick="borrarOperacion(${oper.id})" 
+						   class="material-symbols-outlined balance__fila-btn--del"> delete 
+						</span>
 					</div>
 				</div>
 			</div>
@@ -312,7 +312,7 @@ function cargarCategorias() {
 			mostrarCategoriasOper(data);
 		})
 		.catch((error) => {
-			console.log("ERROR - Carga de CATEGORÍAS en Operaciones: ", error);
+			console.log("ERROR - Carga de categorías en operaciones: ", error);
 		});
 }
 
@@ -332,7 +332,7 @@ function mostrarCategoriasOper(listCat) {
 		}
 	}
 
-	//Mostrar CATEGORIA en Nueva Operación
+	//Mostrar CATEGORIAs en Nueva Operación
 	categoria_oper_select.innerHTML = "";
 	if (listCat.length === 0) {
 		categoria_oper_select.innerHTML += `<option value=0>Sin Categorías</option>`;
@@ -352,13 +352,23 @@ function mostrarCategoriasOper(listCat) {
 let operaciones = {}; //objeto vacío para agregar o editar.
 let idOper_paraEditar;
 
-//Muestra ventana de  Nueva operación
+//Muestra ventana de Nueva operación
 $("#btn-nueva-oper").addEventListener("click", () => {
 	contenedor_menuBalance.classList.add("ocultar"); //viene de main.js
 	$("#cont-nueva-oper").classList.remove("ocultar");
+	$("#btn-agregar-oper").style.display = `flex`;
+	$("#btn-editar-oper").style.display = `none`;
+	$("#tit-nueva-op").innerHTML = "Nueva Operación";
+
+	//Limpiar inputs.
+	$("#descripcion-oper-input").value = "";
+	$("#monto-oper-input").value = "";
+	//$("#tipo-oper-select").value = ;
+	//$("#categoria-oper-select").value = ;
+	//$("#fecha-oper-input").value = ;
 });
 
-//Cancela Nueva Operación.
+//Cancela Operación.
 $("#btn-cancelar-oper").addEventListener("click", () => {
 	contenedor_menuBalance.classList.remove("ocultar"); //viene de main.js
 	$("#cont-nueva-oper").classList.add("ocultar");
@@ -371,20 +381,23 @@ $("#btn-agregar-oper").addEventListener("click", () => {
 	$("#cont-nueva-oper").classList.add("ocultar");
 
 	operaciones = {};
-	operaciones.descripcion = $("#descripcion-oper-input").value.toUpperCase();
+	operaciones.descripcion = $("#descripcion-oper-input")
+		.value.toUpperCase()
+		.slice(0, 30);
 	operaciones.monto = parseFloat(`${$("#monto-oper-input").value}`);
 	operaciones.tipo = $("#tipo-oper-select").value;
-
 	operaciones.categoria = {
 		id: parseInt(`${$("#categoria-oper-select").value}`),
 		nombre: "",
 	};
-	operaciones.fechaOperacion = $("#fecha-oper-input").value;
+	operaciones.fechaOperacion = new Date(
+		`${$("#fecha-oper-input").value}T00:00:00`
+	);
 
 	registrarOperaciones(operaciones); //manda a la DBF
 });
 
-//Guarda datos de Nueva operación en la DBF
+//Guarda datos de la Nueva Operación en la DBF
 let registrarOperaciones = async (operaciones) => {
 	try {
 		let peticion = await fetch("http://localhost:8080/api_watch/oper/crear", {
@@ -396,7 +409,7 @@ let registrarOperaciones = async (operaciones) => {
 			body: JSON.stringify(operaciones),
 		});
 	} catch (error) {
-		console.log("ERROR - CREAR Operación: ", error);
+		console.log("ERROR - Alta de operación: ", error);
 	}
 	cargarOperaciones(); //actualizar listado
 };
@@ -415,9 +428,90 @@ let borrarOperacion = async (idOper) => {
 			}
 		);
 	} catch (error) {
-		console.log("ERROR - ELIMINAR Operacion: ", error);
+		console.log("ERROR - Borrar operacion: ", error);
 	}
 	cargarOperaciones(); //actualizar listado
+};
+
+/* ============== EDITAR OPERACION ============= */
+// 1- Busca la OPERACIÓN a editar y la muestra en el input.
+function editarOperacion(idOper) {
+	idOper_paraEditar = idOper;
+
+	let respuestaFetch = fetch("http://localhost:8080/api_watch/oper/" + idOper, {
+		method: "GET",
+		headers: {
+			Accept: "application/json",
+			"Content-Type": "application/json; charset=utf-8",
+		},
+	});
+
+	respuestaFetch
+		.then((respuesta) => {
+			return respuesta.json();
+		})
+		.then((data) => {
+			mostrarOperParaEditar(data);
+		})
+		.catch((error) => {
+			console.log("ERROR - Buscar una operación para editar: ", error);
+		});
+}
+// 2-Mostrar
+function mostrarOperParaEditar(operaciones) {
+	contenedor_menuBalance.classList.add("ocultar"); //viene de main.js
+	$("#cont-nueva-oper").classList.remove("ocultar");
+	$("#btn-agregar-oper").style.display = `none`;
+	$("#btn-editar-oper").style.display = `flex`;
+	$("#tit-nueva-op").innerHTML = "Editar una Operación";
+
+	$("#descripcion-oper-input").value = operaciones.descripcion;
+	$("#monto-oper-input").value = operaciones.monto;
+	$("#tipo-oper-select").value = operaciones.tipo;
+	$("#categoria-oper-select").value = operaciones.categoria.id;
+	$("#fecha-oper-input").value = operaciones.fechaOperacion;
+}
+
+// 3-Btn "guardar Operación editada"
+$("#btn-editar-oper").addEventListener("click", () => {
+	contenedor_menuBalance.classList.remove("ocultar"); //viene de main.js
+	$("#cont-nueva-oper").classList.add("ocultar");
+
+	operaciones = {};
+	operaciones.descripcion = $("#descripcion-oper-input")
+		.value.toUpperCase()
+		.slice(0, 30);
+	operaciones.monto = parseFloat(`${$("#monto-oper-input").value}`);
+	operaciones.tipo = $("#tipo-oper-select").value;
+	operaciones.categoria = {
+		id: parseInt(`${$("#categoria-oper-select").value}`),
+		nombre: "",
+	};
+	operaciones.fechaOperacion = new Date(
+		`${$("#fecha-oper-input").value}T00:00:00`
+	);
+
+	guardarOperEditada(idOper_paraEditar, operaciones);
+});
+
+//4- Guarda la operación editada
+let guardarOperEditada = async (idOper, operaciones) => {
+	try {
+		let peticion = await fetch(
+			"http://localhost:8080/api_watch/oper/" + idOper,
+			{
+				method: "PUT",
+				headers: {
+					Accept: "application/json",
+					"Content-Type": "application/json; charset=utf-8",
+				},
+				body: JSON.stringify(operaciones),
+			}
+		);
+	} catch (error) {
+		console.log("ERROR - Guardar una operación editada: ", error);
+	}
+	cargarOperaciones();
 };
 
 // ======================================================== //

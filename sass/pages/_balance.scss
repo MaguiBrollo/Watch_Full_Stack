@@ -281,6 +281,7 @@
 			width: 100%;
 			cursor: pointer;
 			margin-top: 10px;
+			padding-left: 5px;
 			@extend .montserrat-n-n; //fonts.scss
 		}
 	}
@@ -303,7 +304,7 @@
 			color: var(--colVerde);
 			display: none;
 		}
-		&--del {
+		&--can {
 			color: var(--colRojo);
 		}
 	}

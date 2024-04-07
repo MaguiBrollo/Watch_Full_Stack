@@ -432,7 +432,7 @@ body {
   height: 35px;
   padding-left: 6px;
 }
-.categoria__btn-aeb {
+.categoria__btn-aec {
   display: flex;
   flex-direction: row;
 }
@@ -455,7 +455,7 @@ body {
   color: var(--colVerde);
   display: none;
 }
-.categoria__btn--bor {
+.categoria__btn--can {
   color: var(--colRojo);
 }
 .categoria__btn--agr:hover, .categoria__btn--edi:hover, .categoria__btn--bor:hover {
@@ -853,6 +853,7 @@ body {
   width: 100%;
   cursor: pointer;
   margin-top: 10px;
+  padding-left: 5px;
 }
 .nueva-oper__span {
   font-size: 0.8rem;
@@ -882,7 +883,7 @@ body {
   color: var(--colVerde);
   display: none;
 }
-.nueva-oper__btn--del {
+.nueva-oper__btn--can {
   color: var(--colRojo);
 }
 

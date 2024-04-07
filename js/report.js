@@ -357,7 +357,7 @@ let buscarCategorias = async () => {
 		let categorias = await respuestaFetch.json();
 		return categorias;
 	} catch (error) {
-		console.log("ERROR - Buscar Categorías en Reportes: ", error); //para ver error
+		console.log("ERROR - Carga de categorías en reportes: ", error); 
 	}
 };
 
@@ -378,7 +378,7 @@ let buscarOperaciones = async () => {
 		let operaciones = await respuestaFetch.json();
 		return operaciones;
 	} catch (error) {
-		console.log("ERROR - Buscar Operaciones en Reportes: ", error); //para ver error
+		console.log("ERROR - Carga de operaciones en reportes: ", error); 
 	}
 };
 
