@@ -49,20 +49,4 @@ body {
 		}
 	}
 
-	.reportes {
-		color: var(--colFuente);
-		max-width: var(--maxAncho);
-		@include flex-dir-al-jus(x, column, center, center);
-		@include caja(var(--colTer), 90%, auto);
-		div {
-			@include flex-dir-al-jus(flex, column, center, center);
-			h2 {
-				@extend .lora-i-n; //fonts.scss
-			}
-
-			.img-reporte {
-				width: 70%;
-			}
-		}
-	}
 }

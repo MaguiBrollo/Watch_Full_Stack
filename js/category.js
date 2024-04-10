@@ -36,7 +36,7 @@ categ_cancelar.addEventListener("click", () => {
 /* ============== NUEVA CATEGORIA ============= */
 categ_agregar.addEventListener("click", () => {
 	categoria = {};
-	categoria.nombre = categ_nombre.value.toUpperCase();
+	categoria.nombre = categ_nombre.value.toUpperCase().slice(0, 20);
 	registrarCategoria(categoria); //manda a la DBF
 	categ_nombre.value = "";
 });
@@ -44,7 +44,7 @@ categ_agregar.addEventListener("click", () => {
 // Agrega una categoría en la DBF
 let registrarCategoria = async (categoria) => {
 	try {
-		let peticion = await fetch("http://localhost:8080/api_watch/crear", {
+		let peticion = await fetch("http://localhost:8080/api_watch/cat/crear", {
 			method: "POST",
 			headers: {
 				Accept: "application/json",
@@ -53,14 +53,17 @@ let registrarCategoria = async (categoria) => {
 			body: JSON.stringify(categoria),
 		});
 	} catch (error) {
-		console.log("ERROR - CREAR categoría: ", error);
+		console.log("ERROR - Alta de categoría: ", error);
 	}
 	listarCategorias(); //actualizar listado
 };
 
 /* ============== LISTAR CATEGORIA ============= */
+const spinner_cat = document.getElementById("spinner-cat");
 function listarCategorias() {
-	let respuestaFetch = fetch("http://localhost:8080/api_watch/listar", {
+	spinner_cat.removeAttribute("hidden");
+
+	let respuestaFetch = fetch("http://localhost:8080/api_watch/cat/listar", {
 		method: "GET",
 		headers: {
 			Accept: "application/json",
@@ -73,10 +76,11 @@ function listarCategorias() {
 			return respuesta.json();
 		})
 		.then((data) => {
+			spinner_cat.setAttribute("hidden", "");
 			mostrarCategorias(data);
 		})
 		.catch((error) => {
-			console.log("ERROR - LISTAR Categorías: ", error);
+			console.log("ERROR - Listar categorías: ", error);
 		});
 }
 
@@ -105,15 +109,18 @@ function mostrarCategorias(listCat) {
 /* ============== BORRAR CATEGORIA ============= */
 let borrarCategoria = async (idCat) => {
 	try {
-		const peticion = await fetch("http://localhost:8080/api_watch/" + idCat, {
-			method: "DELETE",
-			headers: {
-				Accept: "application/json",
-				"Content-Type": "application/json; charset=utf-8",
-			},
-		});
+		const peticion = await fetch(
+			"http://localhost:8080/api_watch/cat/" + idCat,
+			{
+				method: "DELETE",
+				headers: {
+					Accept: "application/json",
+					"Content-Type": "application/json; charset=utf-8",
+				},
+			}
+		);
 	} catch (error) {
-		console.log("ERROR - ELIMINAR Categoría: ", error); //para ver error
+		console.log("ERROR - Borrar una categoría: ", error);
 	}
 	listarCategorias();
 };
@@ -123,7 +130,7 @@ let borrarCategoria = async (idCat) => {
 function editarCategoria(idCat) {
 	idCat_paraEditar = idCat;
 
-	let respuestaFetch = fetch("http://localhost:8080/api_watch/" + idCat, {
+	let respuestaFetch = fetch("http://localhost:8080/api_watch/cat/" + idCat, {
 		method: "GET",
 		headers: {
 			Accept: "application/json",
@@ -139,7 +146,7 @@ function editarCategoria(idCat) {
 			mostrarCatParaEditar(data);
 		})
 		.catch((error) => {
-			console.log("ERROR - Buscar una Categorías: ", error);
+			console.log("ERROR - Buscar una categoría: ", error);
 		});
 }
 // 2-Mostrar
@@ -153,7 +160,7 @@ function mostrarCatParaEditar(categoria) {
 // 3-Btn "guardar categoría editada"
 categ_editar.addEventListener("click", () => {
 	categoria = {};
-	categoria.nombre = categ_nombre.value.toUpperCase();
+	categoria.nombre = categ_nombre.value.toUpperCase().slice(0, 20);
 	guardarEditarCategoria(idCat_paraEditar, categoria);
 
 	categ_agregar.style.display = `flex`;
@@ -165,7 +172,7 @@ categ_editar.addEventListener("click", () => {
 //4- Guarda la categoría editada
 let guardarEditarCategoria = async (id, categoria) => {
 	try {
-		let peticion = await fetch("http://localhost:8080/api_watch/" + id, {
+		let peticion = await fetch("http://localhost:8080/api_watch/cat/" + id, {
 			method: "PUT",
 			headers: {
 				Accept: "application/json",
@@ -174,7 +181,7 @@ let guardarEditarCategoria = async (id, categoria) => {
 			body: JSON.stringify(categoria),
 		});
 	} catch (error) {
-		console.log("ERROR - Guardar Editar categoría: ", error); //para ver error
+		console.log("ERROR - Guardar una categoría editada: ", error);
 	}
 	listarCategorias(); //actualizar listado
 };

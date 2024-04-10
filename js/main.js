@@ -1,3 +1,8 @@
+//=============================================
+// Se usa en TODOS los js, en lugar de: "const btn_nueva_oper = document.getElementById("btn-nueva-oper");"
+const $ = (selector) => document.querySelector(selector);
+//=============================================
+
 // Se usa en balance y reporte ---------
 function formatPesos(num) {
 	return num.toLocaleString("es-ES", {
@@ -58,7 +63,7 @@ const contenedor_menuReportes = document.getElementById("cont-menu-reporte");
 function mostrar(mostrar) {
 	contenedor_menuInicio.classList.add("ocultar");
 	contenedor_menuBalance.classList.add("ocultar");
-	//--
+	$("#cont-nueva-oper").classList.add("ocultar"); //por si esta en Nueva Oper.
 	contenedor_menuCategorias.classList.add("ocultar");
 	contenedor_menuReportes.classList.add("ocultar");
 

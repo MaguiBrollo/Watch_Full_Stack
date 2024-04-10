@@ -52,7 +52,7 @@
 		padding-left: 6px;
 	}
 
-	&__btn-aeb {
+	&__btn-aec {
 		@include flex-dir-al-jus(flex, row, x, x);
 	}
 	&__btn {
@@ -67,7 +67,7 @@
 			color: var(--colVerde);
 			display: none;
 		}
-		&--bor {
+		&--can {
 			color: var(--colRojo);
 		}
 

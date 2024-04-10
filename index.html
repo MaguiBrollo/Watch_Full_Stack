@@ -244,8 +244,11 @@
 							Nueva Operación
 						</button>
 					</div>
+					<!-- para el spinner -->
+					<div hidden id="spinner-bal"></div>
+
 					<!-- contenedor SIN OPERACIONES -->
-					<div class="balance__cont-sin-oper" id="cont-sin-oper">
+					<div class="balance__cont-sin-oper ocultar" id="cont-sin-oper">
 						<img
 							class="balance__img img_js"
 							src="img/operaciones.svg"
@@ -285,7 +288,89 @@
 			</section>
 
 			<!-- contenedor NUEVAS OPERACIONES -->
-			<section></section>
+			<section>
+				<div class="nueva-oper ocultar" id="cont-nueva-oper">
+					<div class="nueva-oper__titulo" >
+						<h2 class="balance__h2" id="tit-nueva-op">Nueva Operación</h2>
+						<img
+							class="nueva-oper__img img-js"
+							src="img/operaciones.svg"
+							alt="Imagen de Operaciones"
+							aria-label="Imagen de Operaciones"
+						/>
+					</div>
+
+					<div class="nueva-oper__borde">
+						<div class="nueva-oper__campo">
+							<label class="" for="descripcion-oper-input"
+								>Descripción
+								<span class="nueva-oper__span">(hasta 40 caracteres)</span>
+							</label>
+							<input
+								type="text"
+								class="nueva-oper__campo--cu"
+								id="descripcion-oper-input"
+								placeholder="Ej.: cuota"
+							/>
+						</div>
+
+						<div class="nueva-oper__campo">
+							<label class="" for="monto-oper-input">Monto</label>
+							<input
+								type="number"
+								class="nueva-oper__campo--cu"
+								id="monto-oper-input"
+								placeholder="Ej.: 1"
+							/>
+						</div>
+
+						<div class="nueva-oper__campo">
+							<label class="" for="tipo-oper-select">Tipo</label>
+							<select class="nueva-oper__campo--cu" id="tipo-oper-select">
+								<option value="GANANCIA">GANANCIA</option>
+								<option value="GASTO">GASTO</option>
+							</select>
+						</div>
+
+						<div class="nueva-oper__campo">
+							<label class="" for="categoria-oper-select">Categoría</label>
+							<select class="nueva-oper__campo--cu" id="categoria-oper-select">
+								<!-- java script -->
+							</select>
+						</div>
+
+						<div class="nueva-oper__campo">
+							<label class="etiqueta my-2" for="fecha-oper-input">Fecha</label>
+							<input
+								type="date"
+								class="nueva-oper__campo--cu"
+								id="fecha-oper-input"
+							/>
+						</div>
+
+						<div class="nueva-oper__botones">
+							<button
+								class="nueva-oper__btn nueva-oper__btn--agr"
+								id="btn-agregar-oper">
+								<span class="material-symbols-outlined"> add_circle </span>
+							</button>
+
+							<button
+									class="nueva-oper__btn nueva-oper__btn--edi"
+									id="btn-editar-oper"								>
+									<span class="material-symbols-outlined"> check_circle </span>
+								</button>
+
+							<button
+								class="nueva-oper__btn nueva-oper__btn--can"
+								id="btn-cancelar-oper"
+							>
+								<span class="material-symbols-outlined"> cancel</span>
+							</button>
+						</div>
+					</div>
+				</div>
+			</section>
 			<!-- ==========================================  -->
 			<!-- ============= MENÚ CATEGORÍAS ============  -->
 			<section class="categoria ocultar" id="cont-categorias">
@@ -314,24 +399,22 @@
 								/>
 							</div>
 
-							<div class="categoria__btn-aeb">
+							<div class="categoria__btn-aec">
 								<button
 									class="categoria__btn categoria__btn--agr"
-									id="categ-agregar"
-								>
+									id="categ-agregar">
 									<span class="material-symbols-outlined"> add_circle </span>
 								</button>
 
 								<button
 									class="categoria__btn categoria__btn--edi"
-									id="categ-editar"
-								>
+									id="categ-editar"								>
 									<span class="material-symbols-outlined"> check_circle </span>
 								</button>
+
 								<button
-									class="categoria__btn categoria__btn--bor"
-									id="categ-cancelar"
-								>
+									class="categoria__btn categoria__btn--can"
+									id="categ-cancelar">
 									<span class="material-symbols-outlined"> cancel</span>
 								</button>
 							</div>
@@ -347,6 +430,8 @@
 							</div>
 
 							<div class="categoria__listado" id="categ-tabla-listado">
+								<!-- para el spinner -->
+								<div hidden id="spinner-cat"></div>
 								<!-- Se completa con los datos de la DBF. Ver categorias.js-->
 								<!-- <div class="categoria__listado-fila">
 										div nombre 
@@ -372,7 +457,8 @@
 							aria-label="Imagen de Reportes"
 						/>
 					</div>
-
+					<!-- para el spinner -->
+					<div hidden id="spinner-rep"></div>
 					<!--  =======================================   -->
 					<!-- Esta img se muestra cuando NO hay reportes-->
 					<div class="reporte__cont-sin-rep ocultar" id="cont-sin-reporte">
@@ -487,7 +573,10 @@
 									<div class="reporte__list-izq">Balance</div>
 								</div>
 							</div>
-							<div class="reporte__list-cont-de-filas" id="totales-por-categoria">
+							<div
+								class="reporte__list-cont-de-filas"
+								id="totales-por-categoria"
+							>
 								<!-- se completa en el js -->
 							</div>
 						</div>
@@ -544,9 +633,7 @@
 				</a>
 			</nav>
 			<h3 class="footer__h3">
-				Hecho con el
-				<span class="footer__span material-symbols-outlined"> favorite </span>
-				. Magui
+				©2024 - Derechos reservados - Magui
 			</h3>
 		</footer>
 	</body>

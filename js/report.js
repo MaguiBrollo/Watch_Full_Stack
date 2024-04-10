@@ -344,17 +344,20 @@ function mostrarConReportes() {
 
 let buscarCategorias = async () => {
 	try {
-		let respuestaFetch = await fetch("http://localhost:8080/api_watch/listar", {
-			method: "GET",
-			headers: {
-				Accept: "application/json",
-				"Content-Type": "application/json; charset=utf-8",
-			},
-		});
+		let respuestaFetch = await fetch(
+			"http://localhost:8080/api_watch/cat/listar",
+			{
+				method: "GET",
+				headers: {
+					Accept: "application/json",
+					"Content-Type": "application/json; charset=utf-8",
+				},
+			}
+		);
 		let categorias = await respuestaFetch.json();
 		return categorias;
 	} catch (error) {
-		console.log("ERROR - Buscar Categorías en Reportes: ", error); //para ver error
+		console.log("ERROR - Carga de categorías en reportes: ", error); 
 	}
 };
 
@@ -363,7 +366,7 @@ let buscarCategorias = async () => {
 let buscarOperaciones = async () => {
 	try {
 		let respuestaFetch = await fetch(
-			"http://localhost:8080/api_watch/listaroper",
+			"http://localhost:8080/api_watch/oper/listar",
 			{
 				method: "GET",
 				headers: {
@@ -375,17 +378,20 @@ let buscarOperaciones = async () => {
 		let operaciones = await respuestaFetch.json();
 		return operaciones;
 	} catch (error) {
-		console.log("ERROR - Buscar Operaciones en Reportes: ", error); //para ver error
+		console.log("ERROR - Carga de operaciones en reportes: ", error); 
 	}
 };
 
 // ======================================================== //
 /* viene de SCRIPT.JS */
+const spinner_rep = document.getElementById("spinner-rep");
 async function mostrarReportes() {
+	spinner_rep.removeAttribute("hidden");
 	categReporte = await buscarCategorias();
 	operaReporte = await buscarOperaciones();
 
 	if (operaReporte.length > 0 && categReporte.length > 0) {
+		spinner_rep.setAttribute("hidden", "");
 		mostrarConReportes();
 	} else {
 		mostrarSinReportes();
