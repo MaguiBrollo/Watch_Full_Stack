@@ -36,7 +36,7 @@ categ_cancelar.addEventListener("click", () => {
 /* ============== NUEVA CATEGORIA ============= */
 categ_agregar.addEventListener("click", () => {
 	categoria = {};
-	categoria.nombre = categ_nombre.value.toUpperCase();
+	categoria.nombre = categ_nombre.value.toUpperCase().slice(0, 20);
 	registrarCategoria(categoria); //manda a la DBF
 	categ_nombre.value = "";
 });
@@ -120,7 +120,7 @@ let borrarCategoria = async (idCat) => {
 			}
 		);
 	} catch (error) {
-		console.log("ERROR - Borrar una categoría: ", error); 
+		console.log("ERROR - Borrar una categoría: ", error);
 	}
 	listarCategorias();
 };
@@ -160,7 +160,7 @@ function mostrarCatParaEditar(categoria) {
 // 3-Btn "guardar categoría editada"
 categ_editar.addEventListener("click", () => {
 	categoria = {};
-	categoria.nombre = categ_nombre.value.toUpperCase();
+	categoria.nombre = categ_nombre.value.toUpperCase().slice(0, 20);
 	guardarEditarCategoria(idCat_paraEditar, categoria);
 
 	categ_agregar.style.display = `flex`;
@@ -181,7 +181,7 @@ let guardarEditarCategoria = async (id, categoria) => {
 			body: JSON.stringify(categoria),
 		});
 	} catch (error) {
-		console.log("ERROR - Guardar una categoría editada: ", error); 
+		console.log("ERROR - Guardar una categoría editada: ", error);
 	}
 	listarCategorias(); //actualizar listado
 };

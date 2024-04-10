@@ -33,7 +33,7 @@ body {
   font-weight: 500;
   font-style: italic;
 }
-.lora-i-n, .reporte__texto-sin-rep, .reporte__tit, .balance__p-sin-oper, .balance__h2, .categoria__tit, .main .reportes div h2, .tamanio-frase, .footer__h3, .header__cont-nav, .header__logo-ada--nombre {
+.lora-i-n, .reporte__texto-sin-rep, .reporte__tit, .balance__p-sin-oper, .balance__h2, .categoria__tit, .tamanio-frase, .footer__h3, .header__cont-nav, .header__logo-ada--nombre {
   font-family: "Lora";
   font-style: italic;
   font-weight: normal;
@@ -340,29 +340,6 @@ body {
   justify-content: center;
 }
 .main .inicio__img {
-  width: 70%;
-}
-.main .reportes {
-  color: var(--colFuente);
-  max-width: var(--maxAncho);
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: 15px auto;
-  padding: 15px;
-  border-radius: 5px;
-  background-color: var(--colTer);
-  box-shadow: 8px 8px 5px -8px rgb(164, 163, 163);
-  width: 90%;
-  height: auto;
-}
-.main .reportes div {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-.main .reportes div .img-reporte {
   width: 70%;
 }
 
